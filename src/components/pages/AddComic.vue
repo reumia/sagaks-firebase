@@ -35,7 +35,7 @@
     components: { Card, FileUploader },
     props: [ 'id' ],
     computed: {
-      ...mapState([ 'currentUser', 'comic' ]),
+      ...mapState([ 'comic' ]),
       newTitle: {
         get () {
           return this.comic.title

@@ -54,7 +54,7 @@
       }
     },
     computed: {
-      ...mapState([ 'currentUser', 'comic', 'cut' ]),
+      ...mapState([ 'comic', 'cut' ]),
       newTitle: {
         get () {
           return this.cut.title

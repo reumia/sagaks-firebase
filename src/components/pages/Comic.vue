@@ -12,9 +12,8 @@
         <span class="function"><i class="icon material-icons">crop_din</i> {{ comic.cuts.length | formatCurrency }}</span>
         <Like class="function" :data="comic" :type="'comic'" :id="id"></Like>
       </Functions>
-      <OwnerButtons v-if="isMine">
+      <OwnerButtons>
         <router-link :to="{ name: 'AddCut', query: { comicId: this.id } }" class="button button-success">{{ comic.cuts.length > 0 ? '새 컷' : '첫번째 컷' }}</router-link>
-        <router-link :to="{ name: 'UpdateComic', params: { id: comic.id } }" class="button button-primary">코믹 정보 수정</router-link>
       </OwnerButtons>
     </Introduction>
     <Tree v-if="comic.cuts.length > 0"></Tree>
@@ -26,7 +25,6 @@
   import Functions from '@/components/partials/Functions'
   import OwnerButtons from '@/components/partials/OwnerButtons'
   import Introduction from '@/components/partials/Introduction'
-  import Like from '@/components/partials/Like'
   import Tree from '@/components/partials/Tree'
   import filters from '@/utils/filters'
   import { mapState } from 'vuex'
@@ -35,16 +33,13 @@
     name: 'comic',
     props: [ 'id' ],
     filters: filters,
-    components: { Card, Functions, OwnerButtons, Introduction, Like, Tree },
+    components: { Card, Functions, OwnerButtons, Introduction, Tree },
     created () {
       this.$store.dispatch('GET_COMIC_BY_ID', { id: this.id })
         .catch(err => console.warn(err.response.data))
     },
     computed: {
-      ...mapState([ 'currentUser', 'comic', 'tree' ]),
-      isMine () {
-        return this.comic.ownerId === parseInt(this.currentUser.id, 10)
-      }
+      ...mapState([ 'comic', 'tree' ])
     }
   }
 </script>

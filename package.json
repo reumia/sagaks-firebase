@@ -4,7 +4,6 @@
   "description": "Platform for Relay Webcomics",
   "author": "zzoman <reumia@gmail.com>",
   "private": true,
-  "proxy": "http://127.0.0.1:3001",
   "scripts": {
     "start": "node build/dev-server.js",
     "build": "node build/build.js",

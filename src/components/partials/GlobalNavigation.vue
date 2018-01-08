@@ -4,28 +4,10 @@
     <button class="nav-close" @click="HIDE_GLOBAL_NAVIGATION">
       <i class="material-icons icon">close</i>
     </button>
-    <!-- 유저 버튼 : 인증 -->
-    <div class="nav-user active" v-if="currentUser.name">
-      <div class="title">{{ currentUser.name }}</div>
-      <div class="info">
-        <div class="info-email">{{ currentUser.email }}</div>
-      </div>
-      <div class="button-wrap">
-        <button class="button button-primary button-small" @click="$router.push({ name: 'User', params: { id: currentUser.id } })">
-          <i class="material-icons icon">account_box</i> 마이페이지
-        </button>
-        <button class="button button-small button-success" @click="$router.push({ name: 'AddComic' })">
-          <i class="material-icons icon">add</i> 새 코믹 만들기
-        </button>
-        <button class="button button-danger button-small" @click="signOut">
-          <i class="material-icons icon">power_settings_new</i> 로그아웃
-        </button>
-      </div>
-    </div>
-    <!-- 유저 버튼 : 미인증 -->
-    <div class="nav-user" v-else>
-      <button class="button button-primary button-small" @click="$router.push({ name: 'SignIn' })">
-        <i class="material-icons icon">power_settings_new</i> 로그인
+    <!-- 유저 버튼 -->
+    <div class="nav-user">
+      <button class="button button-small button-success" @click="$router.push({ name: 'AddComic' })">
+        <i class="material-icons icon">add</i> 새 코믹 만들기
       </button>
     </div>
     <!-- 네비게이션 버튼 -->
@@ -33,26 +15,17 @@
       <router-link :to="{ name: 'Home' }" class="nav-list-item">About SAGAKSAGAK</router-link>
       <router-link :to="{ name: 'Cut', params: { id: 0 } }" class="nav-list-item">Cut 0</router-link>
       <router-link :to="{ name: 'Cut', params: { id: 3 } }" class="nav-list-item">Cut 3</router-link>
-      <router-link :to="{ name: 'User', params: { id: 3 } }" class="nav-list-item">User 3</router-link>
     </nav>
   </div>
 </template>
 
 <script>
-  import { mapState, mapMutations } from 'vuex'
+  import { mapMutations } from 'vuex'
 
   export default {
     name: 'global-navigation',
-    computed: {
-      ...mapState([ 'currentUser' ])
-    },
     methods: {
-      ...mapMutations([ 'HIDE_GLOBAL_NAVIGATION' ]),
-      signOut () {
-        this.$store.dispatch('SIGN_OUT')
-          .then(() => this.$router.push({ name: 'Home' }))
-          .catch(err => console.warn(err.response.data))
-      }
+      ...mapMutations([ 'HIDE_GLOBAL_NAVIGATION' ])
     },
     data () {
       return {
