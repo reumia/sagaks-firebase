@@ -7,6 +7,6 @@ export default {
     return value.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,')
   },
   formatDate (value) {
-    return moment(String(value)).format('LL')
+    return moment(new Date(value)).format('LL')
   }
 }

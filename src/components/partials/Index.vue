@@ -6,7 +6,7 @@
         :key="index"
         :id="index"
         :title="item.title"
-        :createdAt="item.createdAt"
+        :createdAt="item.createAt"
         :imageUrl="item.imageUrl"
       ></IndexItem>
     </div>
