@@ -2,7 +2,8 @@
   <div class="add-comic">
     <Card :title="id ? '코믹 수정' : '새 코믹'">
       <FileUploader
-        @onSuccess="addFile"
+              :exists="imageUrl"
+              @onSuccess="addFile"
       ></FileUploader>
       <form @submit.prevent="handleSubmit">
         <input class="input" v-model="title" type="text" placeholder="제목" required/>
@@ -58,8 +59,9 @@
       handleSubmit () {
         this.add()
       },
-      addFile (response) {
-        this.imageUrl = response.imageUrl
+      addFile (url) {
+        console.log(url)
+        this.imageUrl = url
       }
     }
   }

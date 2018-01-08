@@ -3,16 +3,9 @@ import Vuex from 'vuex'
 import axios from '../utils/axios'
 import _ from 'lodash'
 import * as d3 from 'd3-hierarchy'
-import firebase from 'firebase'
-import 'firebase/firestore'
+import firebase from '../utils/firebase'
 
 Vue.use(Vuex)
-
-firebase.initializeApp({
-  apiKey: 'AIzaSyBSCnbwvFNKH67DI509sJ0CW9MTyB1Cs0g',
-  authDomain: 'sagaksagak-f152b.firebaseapp.com',
-  projectId: 'sagaksagak-f152b'
-})
 
 const db = firebase.firestore()
 
