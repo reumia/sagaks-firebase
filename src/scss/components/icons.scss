@@ -1,0 +1,11 @@
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+.icon {
+  font-size: 1em;
+  line-height: 1;
+  vertical-align: -1px;
+  &[disabled],
+  &[disabled=disabled] {
+    color: $color-disabled!important;
+  }
+}

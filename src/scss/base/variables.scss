@@ -1,0 +1,44 @@
+// Fonts
+
+$font-family: sans-serif;
+$font-size: 16px;
+$font-size-small: 14px;
+$font-size-smaller: 12px;
+$font-size-smallest: 10px;
+$font-size-large: $font-size * 1.5;
+$line-height: 1.5;
+
+// Colors
+
+$color-brand: #35a3ff;
+$color-success: darkturquoise;
+$color-warning: #fco;
+$color-danger: orangered;
+$color-disabled: #ccc;
+
+$color-background: #fff;
+$color-background-dark: #f3f3f3;
+$color-background-darker: #eee;
+
+$color-text: #333;
+$color-text-light: #888;
+$color-text-lighter: #aaa;
+
+$color-border: #e3e3e3;
+$color-border-dark: #aaa;
+
+// Units
+
+$space-unit: 16px;
+$transition-unit: 0.2s ease-in-out;
+$radius-unit: $space-unit / 4;
+$box-shadow-unit: 0 3px 0 rgba(0,0,0, .07);
+
+// Layouts
+
+$site-width: $space-unit * 60;
+$site-width-narrow: $site-width / 2;
+$header-height: $space-unit * 4;
+$aside-width: $space-unit * 18;
+$aside-height: $space-unit * 4;
+$intro-width: $space-unit * 24;

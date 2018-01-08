@@ -1,0 +1,111 @@
+.input {
+  @extend %form-init;
+  padding: 12px;
+  border: 2px solid $color-border;
+  background-color: $color-background;
+  &:focus {
+    border-color: $color-brand;
+    color: $color-text;
+  }
+  &[disabled] {
+    background-color: transparent;
+    color: $color-disabled;
+  }
+}
+
+textarea.input {
+  min-height: $space-unit * 10;
+  resize: vertical;
+}
+
+::-webkit-input-placeholder {
+  color: $color-border-dark;
+}
+
+.button-flex {
+  display: flex;
+  margin-top: $space-unit / 2;
+  .input ~ .input,
+  .input ~ .button,
+  .button ~ .input,
+  .button ~ .button {
+    margin: 0 0 0 $space-unit / 2 !important;
+  }
+}
+
+.button {
+  @extend %form-init;
+  position: relative;
+  padding: 12px;
+  border-width: 0 0 2px 0;
+  border-style: solid;
+  border-color: $color-text-light;
+  background-color: lighten($color-text-light, 8);
+  border-radius: $radius-unit;
+  color: $color-background;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: center;
+  &:before {
+    content: '';
+    position: absolute;
+    display: none;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(255,255,255,.12);
+  }
+  &:focus ,
+  &:hover {
+    &:before {
+      display: block;
+    }
+  }
+}
+.button-small {
+  padding: 6px 10px;
+  font-size: $font-size-small;
+}
+.button-extra-small {
+  padding: 4px 6px 2px;
+  width: auto;
+  font-size: $font-size-smaller;
+  font-weight: normal;
+}
+.button-primary {
+  border-color: darken($color-brand, 10);
+  background-color: $color-brand;
+}
+.button-success {
+  border-color: darken($color-success, 10);
+  background-color: $color-success;
+}
+.button-danger {
+  border-color: darken($color-danger, 10);
+  background-color: $color-danger;
+}
+
+.select {
+  position: relative;
+  .select-icon {
+    position: absolute;
+    top: $space-unit;
+    right: $space-unit / 2;
+    color: $color-text-lighter;
+  }
+  .select-input {
+    padding-right: $space-unit * 2;
+  }
+}
+
+form {
+  .input,
+  .button,
+  .button-flex {
+    margin-bottom: $space-unit / 2;
+    > .button {
+      margin-bottom: 0;
+    }
+  }
+}
