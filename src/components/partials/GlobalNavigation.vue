@@ -26,11 +26,6 @@
     name: 'global-navigation',
     methods: {
       ...mapMutations([ 'HIDE_GLOBAL_NAVIGATION' ])
-    },
-    data () {
-      return {
-        msg: ''
-      }
     }
   }
 </script>

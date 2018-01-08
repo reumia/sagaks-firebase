@@ -1,22 +1,21 @@
 <template>
-  <div class="page-comic" v-if="comic.id">
-    <div class="comic-background" v-if="comic.imageUrl" :style="{ backgroundImage: `url(${comic.imageUrl})` }"></div>
+  <div class="page-comic" v-if="id">
+    <div class="comic-background" v-if="imageUrl" :style="{ backgroundImage: `url(${imageUrl})` }"></div>
     <Introduction
-      :title="comic.title"
-      :descriptions="comic.descriptions"
-      :status="comic.status"
+      :title="title"
+      :descriptions="descriptions"
+      :status="status"
     >
       <Functions>
-        <span class="function"><i class="icon material-icons">access_time</i> {{ comic.createdAt | formatDate }}</span>
-        <router-link :to="{ name: 'User', params: { id: comic.ownerId } }" class="function"><i class="icon material-icons">person</i> {{ comic.owner.name }}</router-link>
-        <span class="function"><i class="icon material-icons">crop_din</i> {{ comic.cuts.length | formatCurrency }}</span>
-        <Like class="function" :data="comic" :type="'comic'" :id="id"></Like>
+        <span class="function"><i class="icon material-icons">access_time</i> {{ createAt | formatDate }}</span>
+        <span class="function"><i class="icon material-icons">person</i> {{ email }}</span>
+        <span class="function"><i class="icon material-icons">crop_din</i> {{ cuts.length | formatCurrency }}</span>
       </Functions>
       <OwnerButtons>
-        <router-link :to="{ name: 'AddCut', query: { comicId: this.id } }" class="button button-success">{{ comic.cuts.length > 0 ? '새 컷' : '첫번째 컷' }}</router-link>
+        <router-link :to="{ name: 'AddCut', query: { comicId: this.id } }" class="button button-success">{{ cuts.length > 0 ? '새 컷' : '첫번째 컷' }}</router-link>
       </OwnerButtons>
     </Introduction>
-    <Tree v-if="comic.cuts.length > 0"></Tree>
+    <Tree v-if="cuts.length > 0"></Tree>
   </div>
 </template>
 
@@ -34,12 +33,31 @@
     props: [ 'id' ],
     filters: filters,
     components: { Card, Functions, OwnerButtons, Introduction, Tree },
-    created () {
+    data () {
+      return {
+        createAt: null,
+        title: null,
+        descriptions: null,
+        email: null,
+        imageUrl: null,
+        status: null,
+        cuts: []
+      }
+    },
+    beforeMount () {
       this.$store.dispatch('GET_COMIC_BY_ID', { id: this.id })
-        .catch(err => console.warn(err.response.data))
+        .then(response => {
+          this.status = response.status
+          this.createAt = response.createAt
+          this.title = response.title
+          this.descriptions = response.descriptions
+          this.email = response.email
+          this.imageUrl = response.imageUrl
+        })
+        .catch(err => new Error(err))
     },
     computed: {
-      ...mapState([ 'comic', 'tree' ])
+      ...mapState([ 'tree' ])
     }
   }
 </script>

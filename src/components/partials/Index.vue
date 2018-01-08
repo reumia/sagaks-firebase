@@ -2,9 +2,9 @@
   <div class="index">
     <div class="item-wrap">
       <IndexItem
-        v-for="item in items"
-        :key="item.id"
-        :id="item.id"
+        v-for="(item, index) in items"
+        :key="index"
+        :id="index"
         :title="item.title"
         :createdAt="item.createdAt"
         :imageUrl="item.imageUrl"

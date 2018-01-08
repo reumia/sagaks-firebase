@@ -3,7 +3,18 @@ import Vuex from 'vuex'
 import axios from '../utils/axios'
 import _ from 'lodash'
 import * as d3 from 'd3-hierarchy'
+import firebase from 'firebase'
+import 'firebase/firestore'
+
 Vue.use(Vuex)
+
+firebase.initializeApp({
+  apiKey: 'AIzaSyBSCnbwvFNKH67DI509sJ0CW9MTyB1Cs0g',
+  authDomain: 'sagaksagak-f152b.firebaseapp.com',
+  projectId: 'sagaksagak-f152b'
+})
+
+const db = firebase.firestore()
 
 const state = {
   isGlobalNavigationVisible: false,
@@ -19,9 +30,6 @@ const mutations = {
   },
   HIDE_GLOBAL_NAVIGATION (state) {
     state.isGlobalNavigationVisible = false
-  },
-  SET_COMIC (state, comic) {
-    state.comic = _.assignIn(state.comic, comic)
   },
   DELETE_COMIC (state) {
     state.comic = {}
@@ -44,39 +52,20 @@ const mutations = {
 
 const actions = {
   async GET_COMIC_BY_ID ({commit}, {id}) {
-    if (id) {
-      const response = await axios.get(`/comics/${id}`)
-      const comic = response.data
-
-      commit('SET_COMIC', comic)
-      commit('SET_TREE', comic.cuts)
-    } else {
-      commit('DELETE_COMIC')
-    }
+    const response = await db.collection('comics').doc(id).get()
+    return response.data()
   },
-  async ADD_COMIC ({commit, state}) {
-    const response = await axios.post('/comics', {
-      title: state.comic.title,
-      descriptions: state.comic.descriptions,
-      imageUrl: state.comic.imageUrl
-    })
-    const comic = response.data
-
-    return comic
-  },
-  async UPDATE_COMIC ({commit, state}, {id}) {
-    const response = await axios.put(`/comics/${id}/update`, {
-      title: state.comic.title,
-      descriptions: state.comic.descriptions,
-      imageUrl: state.comic.imageUrl
-    })
-    const comic = response.data
-
-    return comic
+  async ADD_COMIC ({commit}, payload) {
+    const response = await db.collection('comics').add(payload)
+    return response
   },
   async GET_LATEST_COMICS ({commit}) {
-    const response = await axios.get(`/comics/latest`)
-    const comics = response.data
+    const response = await db.collection('comics').get()
+    const comics = {}
+
+    response.forEach(doc => {
+      comics[doc.id] = doc.data()
+    })
 
     commit('SET_LATEST_COMICS', comics)
   },
@@ -89,15 +78,6 @@ const actions = {
     const cut = response.data
 
     return cut
-  },
-
-  async ADD_LIKE ({commit}, {type, id}) {
-    const response = await axios.post(`/likes/${type}/${id}`)
-    return response.data
-  },
-  async DELETE_LIKE ({commit}, {type, id}) {
-    const response = await axios.delete(`/likes/${type}/${id}`)
-    return response.data
   }
 }
 

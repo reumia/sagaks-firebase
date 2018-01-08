@@ -5,10 +5,12 @@
         @onSuccess="addFile"
       ></FileUploader>
       <form @submit.prevent="handleSubmit">
-        <input class="input" v-model="newTitle" type="text" placeholder="제목" required/>
-        <textarea class="input" v-model="newDescriptions" placeholder="설명" required></textarea>
+        <input class="input" v-model="title" type="text" placeholder="제목" required/>
+        <textarea class="input" v-model="descriptions" placeholder="설명" required></textarea>
+        <input class="input" v-model="email" type="email" placeholder="이메일" required/>
+        <input class="input" v-model="password" type="password" placeholder="비밀번호" required/>
         <div class="button-flex">
-          <button class="button button-primary" type="submit"><i class="icon material-icons">check</i> {{ id ? '변경내용 적용' : '새 코믹 만들기' }}</button>
+          <button class="button button-primary" type="submit"><i class="icon material-icons">check</i>새 코믹 만들기</button>
           <button class="button" type="button" @click="$router.go(-1)"><i class="icon material-icons">close</i> 취소</button>
         </div>
       </form>
@@ -19,59 +21,45 @@
 <script>
   import Card from '@/components/partials/Card'
   import FileUploader from '@/components/partials/FileUploader'
-  import { mapState, mapMutations } from 'vuex'
+  import { mapMutations } from 'vuex'
 
   export default {
     name: 'add-comic',
-    created () {
-      const currentRouterName = this.$router.history.current.name
-
-      if (currentRouterName === 'UpdateComic') {
-        this.$store.dispatch('GET_COMIC_BY_ID', { id: this.id })
-          .catch(err => console.warn(err.response.data))
-      }
-      if (currentRouterName === 'AddComic') this.DELETE_COMIC()
-    },
     components: { Card, FileUploader },
     props: [ 'id' ],
-    computed: {
-      ...mapState([ 'comic' ]),
-      newTitle: {
-        get () {
-          return this.comic.title
-        },
-        set (value) {
-          this.SET_COMIC({title: value})
-        }
-      },
-      newDescriptions: {
-        get () {
-          return this.comic.descriptions
-        },
-        set (value) {
-          this.SET_COMIC({descriptions: value})
-        }
+    data () {
+      return {
+        title: null,
+        descriptions: null,
+        createAt: null,
+        imageUrl: null,
+        email: null,
+        password: null
       }
     },
     methods: {
-      ...mapMutations([ 'SET_COMIC', 'DELETE_COMIC' ]),
-      // TODO : 새 코믹 추가 후 페이지 이동 시, Relation 모델 데이터 못 불러오는 문제
+      ...mapMutations([ 'DELETE_COMIC' ]),
       add () {
-        this.$store.dispatch('ADD_COMIC')
-          .then(comic => this.$router.push({ name: 'Comic', params: { id: comic.id } }))
-          .catch(err => console.warn(err.response.data))
-      },
-      update () {
-        this.$store.dispatch('UPDATE_COMIC', { id: this.id })
-          .then(comic => this.$router.push({ name: 'Comic', params: { id: comic.id } }))
-          .catch(err => console.warn(err.response.data))
+        this.$store.dispatch('ADD_COMIC', {
+          status: 'OPENED',
+          createAt: new Date(),
+          title: this.title,
+          descriptions: this.descriptions,
+          imageUrl: this.imageUrl,
+          email: this.email,
+          password: this.password
+        })
+          .then(response => this.$router.push({ name: 'Comic', params: { id: response.id } }))
+          .catch(err => {
+            console.warn(err)
+            return new Error(err)
+          })
       },
       handleSubmit () {
-        if (this.id) this.update()
-        else this.add()
+        this.add()
       },
       addFile (response) {
-        this.SET_COMIC({imageUrl: response.imageUrl})
+        this.imageUrl = response.imageUrl
       }
     }
   }
