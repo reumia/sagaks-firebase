@@ -30,10 +30,10 @@
           </vue-cropper>
         </div>
         <div class="button-flex">
-          <button type="submit" class="button button-extra-small button-success" @click.prevent="onCropSubmit">
+          <button type="submit" class="button button-extra-small button-success" @click.prevent="handleCropSubmit">
             <i class="icon material-icons">crop</i> 자르기
           </button>
-          <button type="button" class="button button-extra-small button-danger" @click.prevent="$refs.upload.clear">
+          <button type="button" class="button button-extra-small button-danger" @click.prevent="handleCancel">
             <i class="icon material-icons">close</i> 취소
           </button>
         </div>
@@ -77,6 +77,11 @@
       }
     },
     methods: {
+      clear () {
+        this.temp = null
+        this.$refs.input.value = ''
+        this.$refs.cropper.destroy()
+      },
       handleInput (event) {
         const files = event.target.files
         const file = files[0]
@@ -102,12 +107,13 @@
           .then(this.onUploadSucceed)
           .catch(this.onUploadError)
       },
-      onCropSubmit () {
+      handleCancel () {
+        this.clear()
+      },
+      handleCropSubmit () {
         this.$refs.cropper.getCroppedCanvas().toBlob(blob => {
           this.handleUpload(blob)
-          this.temp = null
-          this.$refs.input.value = ''
-          this.$refs.cropper.destroy()
+          this.clear()
         })
       },
       onUploadSucceed (response) {
