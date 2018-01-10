@@ -46,22 +46,6 @@ textarea.input {
   font-weight: bold;
   cursor: pointer;
   text-align: center;
-  &:before {
-    content: '';
-    position: absolute;
-    display: none;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: rgba(255,255,255,.12);
-  }
-  &:focus ,
-  &:hover {
-    &:before {
-      display: block;
-    }
-  }
 }
 .button-small {
   padding: 6px 10px;
