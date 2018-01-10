@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import axios from '../utils/axios'
 import _ from 'lodash'
 import * as d3 from 'd3-hierarchy'
 import firebase from '../utils/firebase'
@@ -44,15 +43,28 @@ const mutations = {
 }
 
 const actions = {
-  async GET_COMIC_BY_ID ({commit}, {id}) {
-    const response = await db.collection('comics').doc(id).get()
-    return response.data()
+  async GET_COMIC_BY_ID ({ commit }, { id }) {
+    const comic = await db.collection('comics').doc(id).get()
+    const cuts = []
+    const cutsSnapshot = await db.collection('comics').doc(id).collection('cuts').get()
+
+    cutsSnapshot.forEach(doc => {
+      cuts.push({
+        ...doc.data(),
+        id: doc.id
+      })
+    })
+
+    return {
+      ...comic.data(),
+      cuts: cuts
+    }
   },
-  async ADD_COMIC ({commit}, payload) {
+  async ADD_COMIC ({ commit }, payload) {
     const response = await db.collection('comics').add(payload)
     return response
   },
-  async GET_LATEST_COMICS ({commit}) {
+  async GET_LATEST_COMICS ({ commit }) {
     const response = await db.collection('comics').get()
     const comics = {}
 
@@ -62,15 +74,35 @@ const actions = {
 
     commit('SET_LATEST_COMICS', comics)
   },
-  async ADD_CUT ({commit, state}, payload) {
-    const response = await axios.post('/cuts', {
-      ...payload,
-      title: state.cut.title,
-      imageUrl: state.cut.imageUrl
-    })
-    const cut = response.data
+  async INIT_ADD_CUT ({ commit, dispatch }, { comicId, parentId }) {
+    let parentCut = null
+    const comic = await dispatch('GET_COMIC_BY_ID', { id: comicId })
 
-    return cut
+    if (parentId) {
+      parentCut = await db.collection('comics').doc(comicId).collection('cuts').doc(parentId).get()
+      parentCut = parentCut.exists ? parentCut.data() : null
+    }
+
+    return {
+      comic: comic,
+      parentCut: parentCut
+    }
+  },
+  async ADD_CUT ({ commit, state }, { comicId, parentId, title, createAt, imageUrl, email, password }) {
+    const response = await db
+      .collection('comics')
+      .doc(comicId)
+      .collection('cuts')
+      .add({
+        parentId: parentId,
+        title: title,
+        createAt: createAt,
+        imageUrl: imageUrl,
+        email: email,
+        password: password
+      })
+
+    return response
   }
 }
 

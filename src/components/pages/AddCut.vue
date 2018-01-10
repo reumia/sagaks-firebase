@@ -4,8 +4,9 @@
       <!-- 부모 컷 선택하기 -->
       <div class="select">
         <i class="select-icon icon material-icons" :disabled="isInitial">keyboard_arrow_down</i>
-        <select class="select-input input" :disabled="isInitial" v-model="newParentId" @change="handleChange">
-          <option v-for="item in options" :value="item.value" :disabled="item.value === null">{{ item.text }}</option>
+        <select class="select-input input" v-model="computedParentId" @change="handleChange" :disabled="isInitial">
+          <option :value="null" disabled>부모 컷을 선택해 주세요.</option>
+          <option v-for="item in siblings" :value="item.id">{{ item.title }}</option>
         </select>
       </div>
       <!-- // 부모 컷 선택하기 -->
@@ -21,14 +22,17 @@
       </div>
       <!-- // 현재 부모 컷 -->
       <FileUploader
-        :ratio="1 / 1"
-        @onSuccess="addFile"
+              :ratio="1 / 1"
+              :exists = "imageUrl"
+              @onSuccess="addFile"
       ></FileUploader>
       <form @submit.prevent="add">
-        <input class="input" v-model="newTitle" type="text" placeholder="제목" required/>
+        <input class="input" v-model="title" type="text" placeholder="제목" required/>
+        <input class="input" v-model="email" type="email" placeholder="이메일" required/>
+        <input class="input" v-model="password" type="password" placeholder="비밀번호" required/>
         <div class="button-flex">
-          <button class="button button-primary" type="submit"><i class="icon material-icons">check</i> {{ id ? '변경내용 적용' : '새 컷 만들기' }}</button>
-          <button class="button" type="button" @click="$router.go(-1)"><i class="icon material-icons">close</i> 취소</button>
+          <button class="button button-primary" type="submit"><i class="icon material-icons">check</i> {{ isInitial ? '새 컷 만들기' : '첫 컷 만들기' }}</button>
+          <button class="button" type="button" @click="handleCancel"><i class="icon material-icons">close</i> 취소</button>
         </div>
       </form>
     </Card>
@@ -38,99 +42,85 @@
 <script>
   import Card from '@/components/partials/Card'
   import FileUploader from '@/components/partials/FileUploader'
-  import { mapState, mapMutations } from 'vuex'
-  import _ from 'lodash'
+  import { mapActions } from 'vuex'
 
   export default {
     name: 'add-cut',
     components: { Card, FileUploader },
-    props: [ 'id', 'parentId', 'comicId' ],
-    created () {
-      this.DELETE_CUT()
-
-      if (this.comic.id !== this.comicId) {
-        this.$store.dispatch('GET_COMIC_BY_ID', { id: this.comicId })
-          .catch(err => console.warn(err.response.data))
+    props: [ 'parentId', 'comicId' ],
+    data () {
+      return {
+        comic: null,
+        parentCut: null,
+        title: null,
+        createAt: null,
+        imageUrl: null,
+        email: null,
+        password: null
+      }
+    },
+    beforeMount () {
+      this.init()
+    },
+    watch: {
+      computedParentId () {
+        this.init()
       }
     },
     computed: {
-      ...mapState([ 'comic', 'cut' ]),
-      newTitle: {
-        get () {
-          return this.cut.title
-        },
-        set (value) {
-          this.SET_CUT({title: value})
-        }
-      },
-      newParentId: {
-        get () {
-          return this.cut.parentId
-        },
-        set (value) {
-          this.SET_CUT({parentId: value})
-        }
-      },
-      isSelected () {
-        return Boolean(this.cut.parentId) === true
-      },
       isInitial () {
-        return this.comic.cuts.length <= 0
+        return this.comic && this.comic.cuts.length <= 0
       },
-      hasInitial () {
-        let filtered = []
-        filtered = _.filter(this.comic.cuts, o => {
-          return o.parentId === null
-        })
-
-        return filtered.length > 0
-      },
-      options () {
-        let selectedCutId = null
-        let values = [{ value: null, text: '부모 컷을 선택하세요.' }]
-
-        if (this.comic.cuts.length > 0) {
-          _.forEach(this.comic.cuts, cut => {
-            values.push({ value: cut.id, text: `#${cut.id} : ${cut.title}` })
-
-            const isSelected = parseInt(cut.id, 10) === parseInt(this.parentId, 10)
-            if (isSelected) selectedCutId = cut.id
-          })
+      computedParentId: {
+        get () {
+          return this.parentId ? this.parentId : null
+        },
+        set (value) {
+          this.$router.push({ name: 'AddCut', query: { comicId: this.comicId, parentId: value } })
         }
-
-        this.SET_CUT({parentId: selectedCutId})
-
-        return values
       },
-      parentCut () {
-        let filtered = null
-
-        filtered = _.filter(this.comic.cuts, o => {
-          return parseInt(o.id, 10) === parseInt(this.parentId, 10)
-        })
-        filtered = filtered[0] || null
-
-        return filtered
+      siblings () {
+        return this.isInitial === false ? this.comic.cuts : []
       }
     },
     methods: {
-      ...mapMutations([ 'SET_CUT', 'DELETE_CUT' ]),
+      ...mapActions([ 'INIT_ADD_CUT', 'ADD_CUT' ]),
+      handleChange (event) {
+        this.computedParentId = event.target.value
+      },
+      handleCancel () {
+        this.$router.push({ name: 'Comic', params: { id: this.comicId } })
+      },
+      init () {
+        this.INIT_ADD_CUT({
+          comicId: this.comicId,
+          parentId: this.computedParentId
+        })
+          .then(({ comic, parentCut }) => {
+            this.comic = comic
+            this.parentCut = parentCut
+          })
+          .catch(err => {
+            throw err
+          })
+      },
       add () {
-        if (this.hasInitial && this.isSelected === false) {
-          console.warn('부모 컷을 선택하세요.')
-        } else {
-          this.$store.dispatch('ADD_CUT', { parentId: this.cut.parentId, comicId: this.comicId })
-            .then(cut => this.$router.push({ name: 'Cut', params: { id: cut.id } }))
-            .catch(err => console.warn(err.response.data))
-        }
+        this.ADD_CUT({
+          comicId: this.comicId,
+          parentId: this.parentId ? this.parentId : null,
+          title: this.title,
+          createAt: new Date(),
+          imageUrl: this.imageUrl,
+          email: this.email,
+          password: this.password
+        })
+          .then(response => this.$router.push({ name: 'Cut', params: { id: response.id } }))
+          .catch(err => {
+            throw err
+          })
       },
-      addFile (response) {
-        this.SET_CUT({imageUrl: response.imageUrl})
-      },
-      handleChange () {
-        if (this.isSelected) {
-          this.$router.push({ name: 'AddCut', query: { comicId: this.comicId, parentId: this.cut.parentId } })
-        }
+      addFile (url) {
+        this.imageUrl = url
       }
     }
   }

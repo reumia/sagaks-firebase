@@ -58,5 +58,6 @@
     padding: ($space-unit / 2) ($space-unit * 2) 0;
     color: $color-text-light;
     font-size: $font-size-small;
+    word-break: break-all;
   }
 </style>

@@ -53,6 +53,7 @@
           this.descriptions = response.descriptions
           this.email = response.email
           this.imageUrl = response.imageUrl
+          this.cuts = response.cuts
         })
         .catch(err => new Error(err))
     },

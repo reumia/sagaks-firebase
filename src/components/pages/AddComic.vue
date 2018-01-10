@@ -22,7 +22,7 @@
 <script>
   import Card from '@/components/partials/Card'
   import FileUploader from '@/components/partials/FileUploader'
-  import { mapMutations } from 'vuex'
+  import { mapMutations, mapActions } from 'vuex'
 
   export default {
     name: 'add-comic',
@@ -40,8 +40,9 @@
     },
     methods: {
       ...mapMutations([ 'DELETE_COMIC' ]),
+      ...mapActions([ 'ADD_COMIC' ]),
       add () {
-        this.$store.dispatch('ADD_COMIC', {
+        this.ADD_COMIC({
           status: 'OPENED',
           createAt: new Date(),
           title: this.title,
@@ -52,15 +53,13 @@
         })
           .then(response => this.$router.push({ name: 'Comic', params: { id: response.id } }))
           .catch(err => {
-            console.warn(err)
-            return new Error(err)
+            throw err
           })
       },
       handleSubmit () {
         this.add()
       },
       addFile (url) {
-        console.log(url)
         this.imageUrl = url
       }
     }
