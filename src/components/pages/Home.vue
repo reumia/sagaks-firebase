@@ -20,7 +20,7 @@
     name: 'home',
     components: { Carousel, Card, Index },
     created () {
-      this.$store.dispatch('GET_LATEST_COMICS')
+      this.$store.dispatch('GET_COMICS')
         .catch((err) => {
           console.warn(err.response.data)
         })

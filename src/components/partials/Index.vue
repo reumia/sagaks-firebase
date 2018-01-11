@@ -3,8 +3,8 @@
     <div class="item-wrap">
       <IndexItem
         v-for="(item, index) in items"
-        :key="index"
-        :id="index"
+        :key="item.id"
+        :id="item.id"
         :title="item.title"
         :createdAt="item.createAt"
         :imageUrl="item.imageUrl"

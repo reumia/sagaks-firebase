@@ -1,0 +1,67 @@
+[debug] [2018-01-11T02:40:08.725Z] ----------------------------------------------------------------------
+[debug] [2018-01-11T02:40:08.727Z] Command:       /usr/local/Cellar/node/8.2.1/bin/node /usr/local/bin/firebase serve --only functions
+[debug] [2018-01-11T02:40:08.727Z] CLI Version:   3.16.0
+[debug] [2018-01-11T02:40:08.727Z] Platform:      darwin
+[debug] [2018-01-11T02:40:08.727Z] Node Version:  v8.2.1
+[debug] [2018-01-11T02:40:08.728Z] Time:          Thu Jan 11 2018 11:40:08 GMT+0900 (KST)
+[debug] [2018-01-11T02:40:08.728Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-01-11T02:40:08.745Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-01-11T02:40:08.746Z] > authorizing via signed-in user
+[debug] [2018-01-11T02:40:08.748Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/sagaksagak-f152b  
+  
+ Thu Jan 11 2018 11:40:08 GMT+0900 (KST)
+[debug] [2018-01-11T02:40:09.588Z] <<< HTTP RESPONSE 200
+[debug] [2018-01-11T02:40:09.590Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/sagaksagak-f152b/tokens  
+  
+ Thu Jan 11 2018 11:40:09 GMT+0900 (KST)
+[debug] [2018-01-11T02:40:10.281Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/Users/1100463/Development/sagaks-firebase'...
+[info] 
+[info] i  functions: Preparing to emulate functions.
+[debug] [2018-01-11T02:40:10.862Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/sagaksagak-f152b  
+  
+ Thu Jan 11 2018 11:40:10 GMT+0900 (KST)
+[debug] [2018-01-11T02:40:10.862Z] >>> HTTP REQUEST GET https://apikeys.googleapis.com/v1/projects/sagaksagak-f152b/apiKeys  
+  
+ Thu Jan 11 2018 11:40:10 GMT+0900 (KST)
+[debug] [2018-01-11T02:40:11.877Z] <<< HTTP RESPONSE 200
+[debug] [2018-01-11T02:40:11.892Z] <<< HTTP RESPONSE 200
+[info] ✔  functions: getComicById: http://localhost:5000/sagaksagak-f152b/us-central1/getComicById
+[info] ✔  functions: getComics: http://localhost:5000/sagaksagak-f152b/us-central1/getComics
+[debug] [2018-01-11T04:17:41.635Z] ----------------------------------------------------------------------
+[debug] [2018-01-11T04:17:41.638Z] Command:       /usr/local/Cellar/node/8.2.1/bin/node /usr/local/bin/firebase serve --only functions
+[debug] [2018-01-11T04:17:41.638Z] CLI Version:   3.16.0
+[debug] [2018-01-11T04:17:41.638Z] Platform:      darwin
+[debug] [2018-01-11T04:17:41.638Z] Node Version:  v8.2.1
+[debug] [2018-01-11T04:17:41.639Z] Time:          Thu Jan 11 2018 13:17:41 GMT+0900 (KST)
+[debug] [2018-01-11T04:17:41.639Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-01-11T04:17:41.650Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-01-11T04:17:41.650Z] > authorizing via signed-in user
+[debug] [2018-01-11T04:17:41.652Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/sagaksagak-f152b  
+  
+ Thu Jan 11 2018 13:17:41 GMT+0900 (KST)
+[debug] [2018-01-11T04:17:42.513Z] <<< HTTP RESPONSE 200
+[debug] [2018-01-11T04:17:42.514Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/sagaksagak-f152b/tokens  
+  
+ Thu Jan 11 2018 13:17:42 GMT+0900 (KST)
+[debug] [2018-01-11T04:17:43.282Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/Users/1100463/Development/sagaks-firebase'...
+[info] 
+[info] i  functions: Preparing to emulate functions.
+[debug] [2018-01-11T04:17:43.788Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/sagaksagak-f152b  
+  
+ Thu Jan 11 2018 13:17:43 GMT+0900 (KST)
+[debug] [2018-01-11T04:17:43.789Z] >>> HTTP REQUEST GET https://apikeys.googleapis.com/v1/projects/sagaksagak-f152b/apiKeys  
+  
+ Thu Jan 11 2018 13:17:43 GMT+0900 (KST)
+[debug] [2018-01-11T04:17:44.826Z] <<< HTTP RESPONSE 200
+[debug] [2018-01-11T04:17:45.031Z] <<< HTTP RESPONSE 200
+[info] ✔  functions: addCut: http://localhost:5000/sagaksagak-f152b/us-central1/addCut
+[info] ✔  functions: getComics: http://localhost:5000/sagaksagak-f152b/us-central1/getComics
+[info] ✔  functions: getComicById: http://localhost:5000/sagaksagak-f152b/us-central1/getComicById
+[info] ✔  functions: addComic: http://localhost:5000/sagaksagak-f152b/us-central1/addComic
+[info] ✔  functions: getCutById: http://localhost:5000/sagaksagak-f152b/us-central1/getCutById
