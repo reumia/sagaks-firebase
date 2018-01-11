@@ -1,0 +1,215 @@
+[debug] [2018-01-11T04:46:14.935Z] ----------------------------------------------------------------------
+[debug] [2018-01-11T04:46:14.937Z] Command:       /usr/local/Cellar/node/8.2.1/bin/node /usr/local/bin/firebase deploy
+[debug] [2018-01-11T04:46:14.937Z] CLI Version:   3.16.0
+[debug] [2018-01-11T04:46:14.937Z] Platform:      darwin
+[debug] [2018-01-11T04:46:14.937Z] Node Version:  v8.2.1
+[debug] [2018-01-11T04:46:14.937Z] Time:          Thu Jan 11 2018 13:46:14 GMT+0900 (KST)
+[debug] [2018-01-11T04:46:14.938Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-01-11T04:46:14.948Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-01-11T04:46:14.948Z] > authorizing via signed-in user
+[debug] [2018-01-11T04:46:14.950Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/sagaksagak-f152b  
+  
+ Thu Jan 11 2018 13:46:14 GMT+0900 (KST)
+[debug] [2018-01-11T04:46:15.814Z] <<< HTTP RESPONSE 200
+[debug] [2018-01-11T04:46:15.815Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/sagaksagak-f152b/tokens  
+  
+ Thu Jan 11 2018 13:46:15 GMT+0900 (KST)
+[debug] [2018-01-11T04:46:16.588Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'sagaksagak-f152b'...
+[info] 
+[info] i  deploying storage, firestore, functions, hosting
+[debug] [2018-01-11T04:46:17.457Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/sagaksagak-f152b  
+  
+ Thu Jan 11 2018 13:46:17 GMT+0900 (KST)
+[debug] [2018-01-11T04:46:18.739Z] <<< HTTP RESPONSE 200
+[info] i  storage: checking storage.rules for compilation errors...
+[debug] [2018-01-11T04:46:18.744Z] >>> HTTP REQUEST POST https://firebaserules.googleapis.com/v1/projects/sagaksagak-f152b:test  
+ { source: { files: [ [Object] ] } } 
+ Thu Jan 11 2018 13:46:18 GMT+0900 (KST)
+[debug] [2018-01-11T04:46:19.992Z] <<< HTTP RESPONSE 200
+[info] ✔  storage: rules file storage.rules compiled successfully
+[info] i  firestore: checking firestore.rules for compilation errors...
+[debug] [2018-01-11T04:46:19.996Z] >>> HTTP REQUEST POST https://firebaserules.googleapis.com/v1/projects/sagaksagak-f152b:test  
+ { source: { files: [ [Object] ] } } 
+ Thu Jan 11 2018 13:46:19 GMT+0900 (KST)
+[debug] [2018-01-11T04:46:21.110Z] <<< HTTP RESPONSE 200
+[info] ✔  firestore: rules file firestore.rules compiled successfully
+[debug] [2018-01-11T04:46:21.112Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "serve": "firebase serve --only functions",
+    "shell": "firebase experimental:functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "dependencies": {
+    "cors": "^2.8.4",
+    "firebase-admin": "^5.4.3",
+    "firebase-functions": "^0.8.0"
+  },
+  "private": true
+}
+[info] i  functions: ensuring necessary APIs are enabled...
+[debug] [2018-01-11T04:46:21.113Z] >>> HTTP REQUEST GET https://servicemanagement.googleapis.com/v1/services/cloudfunctions.googleapis.com/projectSettings/sagaksagak-f152b?view=CONSUMER_VIEW  
+  
+ Thu Jan 11 2018 13:46:21 GMT+0900 (KST)
+[debug] [2018-01-11T04:46:21.113Z] >>> HTTP REQUEST GET https://servicemanagement.googleapis.com/v1/services/runtimeconfig.googleapis.com/projectSettings/sagaksagak-f152b?view=CONSUMER_VIEW  
+  
+ Thu Jan 11 2018 13:46:21 GMT+0900 (KST)
+[debug] [2018-01-11T04:46:21.898Z] <<< HTTP RESPONSE 200
+[debug] [2018-01-11T04:46:23.033Z] <<< HTTP RESPONSE 200
+[info] ✔  functions: all necessary APIs are enabled
+[debug] [2018-01-11T04:46:23.034Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/sagaksagak-f152b  
+  
+ Thu Jan 11 2018 13:46:23 GMT+0900 (KST)
+[debug] [2018-01-11T04:46:23.034Z] >>> HTTP REQUEST GET https://apikeys.googleapis.com/v1/projects/sagaksagak-f152b/apiKeys  
+  
+ Thu Jan 11 2018 13:46:23 GMT+0900 (KST)
+[debug] [2018-01-11T04:46:24.081Z] <<< HTTP RESPONSE 200
+[debug] [2018-01-11T04:46:24.271Z] <<< HTTP RESPONSE 200
+[info] i  storage: uploading rules storage.rules...
+[debug] [2018-01-11T04:46:24.274Z] >>> HTTP REQUEST POST https://firebaserules.googleapis.com/v1/projects/sagaksagak-f152b/rulesets  
+ { source: { files: [ [Object] ] } } 
+ Thu Jan 11 2018 13:46:24 GMT+0900 (KST)
+[debug] [2018-01-11T04:46:25.528Z] <<< HTTP RESPONSE 200
+[debug] [2018-01-11T04:46:25.528Z] [rules] created ruleset projects/sagaksagak-f152b/rulesets/f1a1fc56-090c-4638-95a7-543fbd6d2137
+[info] i  firestore: uploading rules firestore.rules...
+[debug] [2018-01-11T04:46:25.529Z] >>> HTTP REQUEST POST https://firebaserules.googleapis.com/v1/projects/sagaksagak-f152b/rulesets  
+ { source: { files: [ [Object] ] } } 
+ Thu Jan 11 2018 13:46:25 GMT+0900 (KST)
+[debug] [2018-01-11T04:46:25.530Z] >>> HTTP REQUEST GET https://firestore.googleapis.com/v1beta1/projects/sagaksagak-f152b/databases/(default)/indexes  
+  
+ Thu Jan 11 2018 13:46:25 GMT+0900 (KST)
+[debug] [2018-01-11T04:46:26.743Z] <<< HTTP RESPONSE 200
+[debug] [2018-01-11T04:46:26.750Z] <<< HTTP RESPONSE 200
+[debug] [2018-01-11T04:46:26.750Z] [rules] created ruleset projects/sagaksagak-f152b/rulesets/069fa6f7-afe3-4318-9045-cdd3a95567ce
+[info] i  functions: preparing functions directory for uploading...
+[debug] [2018-01-11T04:46:31.673Z] >>> HTTP REQUEST GET https://runtimeconfig.googleapis.com/v1beta1/projects/sagaksagak-f152b/configs  
+  
+ Thu Jan 11 2018 13:46:31 GMT+0900 (KST)
+[debug] [2018-01-11T04:46:32.114Z] <<< HTTP RESPONSE 200
+[info] i  functions: packaged functions (83.27 KB) for uploading
+[debug] [2018-01-11T04:46:36.192Z] >>> HTTP REQUEST GET https://www.googleapis.com/storage/v1/b/staging.sagaksagak-f152b.appspot.com  
+  
+ Thu Jan 11 2018 13:46:36 GMT+0900 (KST)
+[debug] [2018-01-11T04:46:36.624Z] <<< HTTP RESPONSE 200
+[debug] [2018-01-11T04:46:36.625Z] >>> HTTP REQUEST POST https://www.googleapis.com/upload/storage/v1/b/staging.sagaksagak-f152b.appspot.com/o?uploadType=media&name=firebase-functions-source  
+ ReadStream {
+  _readableState: 
+   ReadableState {
+     objectMode: false,
+     highWaterMark: 65536,
+     buffer: BufferList { head: [Object], tail: [Object], length: 1 },
+     length: 65536,
+     pipes: null,
+     pipesCount: 0,
+     flowing: null,
+     ended: false,
+     endEmitted: false,
+     reading: false,
+     sync: false,
+     needReadable: false,
+     emittedReadable: true,
+     readableListening: false,
+     resumeScheduled: false,
+     destroyed: false,
+     defaultEncoding: 'utf8',
+     awaitDrain: 0,
+     readingMore: false,
+     decoder: null,
+     encoding: null },
+  readable: true,
+  domain: null,
+  _events: { end: [Function] },
+  _eventsCount: 1,
+  _maxListeners: undefined,
+  path: '/var/folders/n7/_t9h1_752wvf54w6m_x5hnmc0000gn/T/firebase-functions-31667A0ql0VfSEOpN.zip',
+  fd: 15,
+  flags: 'r',
+  mode: 438,
+  start: undefined,
+  end: undefined,
+  autoClose: true,
+  pos: undefined,
+  bytesRead: 65536 } 
+ Thu Jan 11 2018 13:46:36 GMT+0900 (KST)
+[debug] [2018-01-11T04:46:37.394Z] <<< HTTP RESPONSE 200
+[info] ✔  functions: functions folder uploaded successfully
+[info] i  hosting: preparing dist directory for upload...
+[debug] [2018-01-11T04:46:38.080Z] >>> HTTP REQUEST PUT https://deploy.firebase.com/v1/hosting/sagaksagak-f152b/uploads/-L2YX_pf19GZpAUWWKS5?fileCount=31&message=  
+  
+ Thu Jan 11 2018 13:46:38 GMT+0900 (KST)
+[debug] [2018-01-11T04:46:45.414Z] <<< HTTP RESPONSE 200
+[debug] [2018-01-11T04:46:45.414Z] [hosting] .tgz uploaded successfully, waiting for extraction
+[info] ✔  hosting: 31 files uploaded successfully
+[debug] [2018-01-11T04:46:46.020Z] [rules] releasing firebase.storage/sagaksagak-f152b.appspot.com with ruleset projects/sagaksagak-f152b/rulesets/f1a1fc56-090c-4638-95a7-543fbd6d2137
+[debug] [2018-01-11T04:46:46.020Z] >>> HTTP REQUEST PATCH https://firebaserules.googleapis.com/v1/projects/sagaksagak-f152b/releases/firebase.storage/sagaksagak-f152b.appspot.com  
+ { release: 
+   { name: 'projects/sagaksagak-f152b/releases/firebase.storage/sagaksagak-f152b.appspot.com',
+     rulesetName: 'projects/sagaksagak-f152b/rulesets/f1a1fc56-090c-4638-95a7-543fbd6d2137' } } 
+ Thu Jan 11 2018 13:46:46 GMT+0900 (KST)
+[debug] [2018-01-11T04:46:47.175Z] <<< HTTP RESPONSE 200
+[debug] [2018-01-11T04:46:47.176Z] [rules] updated release projects/sagaksagak-f152b/releases/firebase.storage/sagaksagak-f152b.appspot.com
+[info] ✔  storage: released rules storage.rules to firebase.storage/sagaksagak-f152b.appspot.com
+[debug] [2018-01-11T04:46:47.177Z] [rules] releasing cloud.firestore with ruleset projects/sagaksagak-f152b/rulesets/069fa6f7-afe3-4318-9045-cdd3a95567ce
+[debug] [2018-01-11T04:46:47.177Z] >>> HTTP REQUEST PATCH https://firebaserules.googleapis.com/v1/projects/sagaksagak-f152b/releases/cloud.firestore  
+ { release: 
+   { name: 'projects/sagaksagak-f152b/releases/cloud.firestore',
+     rulesetName: 'projects/sagaksagak-f152b/rulesets/069fa6f7-afe3-4318-9045-cdd3a95567ce' } } 
+ Thu Jan 11 2018 13:46:47 GMT+0900 (KST)
+[debug] [2018-01-11T04:46:48.347Z] <<< HTTP RESPONSE 200
+[debug] [2018-01-11T04:46:48.347Z] [rules] updated release projects/sagaksagak-f152b/releases/cloud.firestore
+[info] ✔  firestore: released rules firestore.rules to cloud.firestore
+[debug] [2018-01-11T04:46:48.349Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/projects/sagaksagak-f152b/locations/us-central1/functions  
+  
+ Thu Jan 11 2018 13:46:48 GMT+0900 (KST)
+[debug] [2018-01-11T04:46:49.261Z] <<< HTTP RESPONSE 200
+[info] i  functions: updating function getComicById...
+[debug] [2018-01-11T04:46:49.264Z] Trigger is:  {"httpsTrigger":{}}
+[info] i  functions: updating function getComics...
+[debug] [2018-01-11T04:46:49.265Z] Trigger is:  {"httpsTrigger":{}}
+[info] i  functions: updating function addComic...
+[debug] [2018-01-11T04:46:49.265Z] Trigger is:  {"httpsTrigger":{}}
+[info] i  functions: updating function getCutById...
+[debug] [2018-01-11T04:46:49.265Z] Trigger is:  {"httpsTrigger":{}}
+[info] i  functions: updating function addCut...
+[debug] [2018-01-11T04:46:49.265Z] Trigger is:  {"httpsTrigger":{}}
+[debug] [2018-01-11T04:46:49.268Z] >>> HTTP REQUEST PATCH https://cloudfunctions.googleapis.com/v1/projects/sagaksagak-f152b/locations/us-central1/functions/getComicById 
+query params: {"updateMask":"sourceArchiveUrl,name,labels,httpsTrigger"} 
+ { sourceArchiveUrl: 'gs://staging.sagaksagak-f152b.appspot.com/firebase-functions-source',
+  name: 'projects/sagaksagak-f152b/locations/us-central1/functions/getComicById',
+  labels: { 'deployment-tool': 'cli-firebase' },
+  httpsTrigger: {} } 
+ Thu Jan 11 2018 13:46:49 GMT+0900 (KST)
+[debug] [2018-01-11T04:46:49.269Z] >>> HTTP REQUEST PATCH https://cloudfunctions.googleapis.com/v1/projects/sagaksagak-f152b/locations/us-central1/functions/getComics 
+query params: {"updateMask":"sourceArchiveUrl,name,labels,httpsTrigger"} 
+ { sourceArchiveUrl: 'gs://staging.sagaksagak-f152b.appspot.com/firebase-functions-source',
+  name: 'projects/sagaksagak-f152b/locations/us-central1/functions/getComics',
+  labels: { 'deployment-tool': 'cli-firebase' },
+  httpsTrigger: {} } 
+ Thu Jan 11 2018 13:46:49 GMT+0900 (KST)
+[debug] [2018-01-11T04:46:49.270Z] >>> HTTP REQUEST PATCH https://cloudfunctions.googleapis.com/v1/projects/sagaksagak-f152b/locations/us-central1/functions/addComic 
+query params: {"updateMask":"sourceArchiveUrl,name,labels,httpsTrigger"} 
+ { sourceArchiveUrl: 'gs://staging.sagaksagak-f152b.appspot.com/firebase-functions-source',
+  name: 'projects/sagaksagak-f152b/locations/us-central1/functions/addComic',
+  labels: { 'deployment-tool': 'cli-firebase' },
+  httpsTrigger: {} } 
+ Thu Jan 11 2018 13:46:49 GMT+0900 (KST)
+[debug] [2018-01-11T04:46:49.272Z] >>> HTTP REQUEST PATCH https://cloudfunctions.googleapis.com/v1/projects/sagaksagak-f152b/locations/us-central1/functions/getCutById 
+query params: {"updateMask":"sourceArchiveUrl,name,labels,httpsTrigger"} 
+ { sourceArchiveUrl: 'gs://staging.sagaksagak-f152b.appspot.com/firebase-functions-source',
+  name: 'projects/sagaksagak-f152b/locations/us-central1/functions/getCutById',
+  labels: { 'deployment-tool': 'cli-firebase' },
+  httpsTrigger: {} } 
+ Thu Jan 11 2018 13:46:49 GMT+0900 (KST)
+[debug] [2018-01-11T04:46:49.272Z] >>> HTTP REQUEST PATCH https://cloudfunctions.googleapis.com/v1/projects/sagaksagak-f152b/locations/us-central1/functions/addCut 
+query params: {"updateMask":"sourceArchiveUrl,name,labels,httpsTrigger"} 
+ { sourceArchiveUrl: 'gs://staging.sagaksagak-f152b.appspot.com/firebase-functions-source',
+  name: 'projects/sagaksagak-f152b/locations/us-central1/functions/addCut',
+  labels: { 'deployment-tool': 'cli-firebase' },
+  httpsTrigger: {} } 
+ Thu Jan 11 2018 13:46:49 GMT+0900 (KST)
