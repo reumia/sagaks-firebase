@@ -1,6 +1,6 @@
 const functions = require('firebase-functions')
 const admin = require('firebase-admin')
-const cors = require('cors')({origin: 'http://127.0.0.1:8080'})
+const cors = require('cors')({origin: true})
 
 admin.initializeApp(functions.config().firebase)
 
