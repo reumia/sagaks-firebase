@@ -7,71 +7,83 @@ admin.initializeApp(functions.config().firebase)
 const db = admin.firestore()
 
 exports.getComicById = functions.https.onRequest((req, res) => {
-  cors(req, res, async () => {
+  cors(req, res, () => {
     const split = req.url.split('/')
     const id = split[split.length - 1]
     const comicRef = db.collection('comics').doc(id)
-    const comicSnapshot = await comicRef.get()
-    const cutsSnapshot = await comicRef.collection('cuts').get()
+    const comicSnapshot = comicRef.get()
+    const cutsSnapshot = comicRef.collection('cuts').get()
 
-    const comic = comicSnapshot.data()
-    comic.cuts = []
-
-    cutsSnapshot.forEach(doc => {
-      const cut = doc.data()
-      cut.id = doc.id
-      comic.cuts.push(cut)
-    })
-
-    res.json(comic)
+    Promise.all([comicSnapshot, cutsSnapshot])
+      .then(values => {
+        const comicSnapshot = values[0]
+        const cutsSnapshot = values[1]
+        const comic = comicSnapshot.data()
+        comic.cuts = []
+        cutsSnapshot.forEach(doc => {
+          const cut = doc.data()
+          cut.id = doc.id
+          comic.cuts.push(cut)
+        })
+        res.json(comic)
+      })
+      .catch(err => { res.status(500).json(err) })
   })
 })
 
 exports.getComics = functions.https.onRequest((req, res) => {
-  cors(req, res, async () => {
-    const snapshot = await db.collection('comics').get()
-    const comics = []
-
-    snapshot.forEach(item => {
-      const comic = item.data()
-      comic.id = item.id
-      comics.push(comic)
-    })
-
-    res.json(comics)
+  cors(req, res, () => {
+    db.collection('comics').get()
+      .then(snapshot => {
+        const comics = []
+        snapshot.forEach(item => {
+          const comic = item.data()
+          comic.id = item.id
+          comics.push(comic)
+        })
+        res.json(comics)
+      })
+      .catch(err => { res.status(500).json(err) })
   })
 })
 
 exports.addComic = functions.https.onRequest((req, res) => {
-  cors(req, res, async () => {
-    const result = await db.collection('comics').add(req.body)
-
-    res.json({ id: result.id })
+  cors(req, res, () => {
+    db.collection('comics').add(req.body)
+      .then(result => {
+        res.json({ id: result.id })
+      })
+      .catch(err => { res.status(500).json(err) })
   })
 })
 
 exports.getCutById = functions.https.onRequest((req, res) => {
-  cors(req, res, async () => {
+  cors(req, res, () => {
     const split = req.url.split('/')
     const comicId = split[1]
     const cutId = split[2]
-
     const ref = db.collection('comics').doc(comicId).collection('cuts').doc(cutId)
-    const snapshot = await ref.get()
-    const cut = snapshot.exists ? snapshot.data() : null
 
-    res.json(cut)
+    ref.get()
+      .then(snapshot => {
+        const cut = snapshot.exists ? snapshot.data() : null
+        res.json(cut)
+      })
+      .catch(err => { res.status(500).json(err) })
   })
 })
 
 exports.addCut = functions.https.onRequest((req, res) => {
-  cors(req, res, async () => {
+  cors(req, res, () => {
     const data = req.body
     const comicId = data.comicId
     delete data.comicId
     const ref = db.collection('comics').doc(comicId).collection('cuts')
-    const result = await ref.add(data)
 
-    res.json({ id: result.id })
+    ref.add(data)
+      .then(result => {
+        res.json({ id: result.id })
+      })
+      .catch(err => { res.status(500).json(err) })
   })
 })
