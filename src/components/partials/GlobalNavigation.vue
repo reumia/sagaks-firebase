@@ -52,7 +52,7 @@
 
   .nav-close {
     @extend %form-init;
-    padding: 0 ($space-unit * 2);
+    padding: 0 ($space-unit * 0.75);
     height: $header-height;
     text-align: left;
   }

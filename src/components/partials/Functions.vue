@@ -15,13 +15,13 @@
 
   .function-wrap {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
   }
 
   .function {
     @extend %form-init;
     display: inline-block;
-    padding: 0 ($space-unit / 2);
+    margin-right: $space-unit / 2;
     width: auto;
     color: $color-text-light;
     font-size: $font-size-smaller;

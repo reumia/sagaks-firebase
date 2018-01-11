@@ -41,7 +41,7 @@
     align-items: center;
     padding: $space-unit;
     width: 100%;
-    height: $space-unit * 20;
+    height: $space-unit * 17;
     background-color: $color-brand;
   }
   .carousel-dots {

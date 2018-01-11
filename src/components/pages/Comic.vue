@@ -12,7 +12,7 @@
         <span class="function"><i class="icon material-icons">crop_din</i> {{ cuts.length | formatCurrency }}</span>
       </Functions>
       <OwnerButtons>
-        <router-link :to="{ name: 'AddCut', query: { comicId: this.id } }" class="button button-success">{{ hasCuts ? '새 컷' : '첫번째 컷' }}</router-link>
+        <router-link :to="{ name: 'AddCut', query: { comicId: this.id } }" class="button button-small button-success">{{ hasCuts ? '새 컷' : '첫번째 컷' }}</router-link>
       </OwnerButtons>
     </Introduction>
     <Tree v-if="hasCuts"></Tree>
@@ -72,7 +72,7 @@
   }
   .comic-background {
     position: absolute;
-    top: $header-height;
+    top: 0;
     left: 0;
     right: 0;
     height: $space-unit * 24;

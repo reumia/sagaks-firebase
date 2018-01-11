@@ -45,7 +45,7 @@ export default {
     color: $color-background;
     font-size: $font-size-smallest;
     font-weight: bold;
-    vertical-align: 5px;
+    vertical-align: middle;
   }
 
   [class^=sticker] ~ [class^=sticker] {

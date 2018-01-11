@@ -17,9 +17,9 @@
 
   .card {
     box-sizing: border-box;
-    padding: 0 ($space-unit * 2);
-    margin: ($space-unit * 2.5) auto;
-    max-width: $site-width;
+    padding: 0 ($space-unit);
+    margin: ($space-unit * 2) auto;
+    max-width: $site-width-narrow;
   }
 
   .card-title {

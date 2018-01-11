@@ -8,6 +8,7 @@
         :title="item.title"
         :createdAt="item.createAt"
         :imageUrl="item.imageUrl"
+        :descriptions="item.descriptions"
       ></IndexItem>
     </div>
   </div>
@@ -27,8 +28,5 @@
   @import 'init';
 
   .item-wrap {
-    display: flex;
-    flex-wrap: wrap;
-    margin: $space-unit / -2;
   }
 </style>

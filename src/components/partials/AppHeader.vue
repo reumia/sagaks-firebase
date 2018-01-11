@@ -30,16 +30,17 @@
 
   .app__header {
     position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
     display: flex;
-    padding: 0 $space-unit;
-    color: $color-brand;
-    background-color: $color-background;
-    box-shadow: $box-shadow-unit;
+    padding: 0 $space-unit / 4;
+    background-color: transparent;
   }
 
   .header-logo,
   .header-menu {
-    padding-left: $space-unit;
+    padding-left: $space-unit / 2;
   }
 
   .header-menu-button,
@@ -47,17 +48,13 @@
     @extend %form-init;
     display: inline-block;
     width: auto;
-    font-size: $font-size-large;
     line-height: $header-height;
     text-align: left;
     white-space: nowrap;
-    .icon {
-      color: $color-text-lighter;
-    }
+    color: transparentize($color-text-light, .3);
   }
 
   .header-logo-link {
     font-weight: bold;
-    color: $color-brand;
   }
 </style>
