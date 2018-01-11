@@ -57,6 +57,26 @@ exports.addComic = functions.https.onRequest((req, res) => {
   })
 })
 
+exports.getCutsByComicId = functions.https.onRequest((req, res) => {
+  cors(req, res, () => {
+    const split = req.url.split('/')
+    const comicId = split[split.length - 1]
+    const ref = db.collection('comics').doc(comicId).collection('cuts')
+
+    ref.get()
+      .then(snapshot => {
+        const cuts = []
+        snapshot.forEach(item => {
+          const cut = item.data()
+          cut.id = item.id
+          cuts.push(cut)
+        })
+        res.json(cuts)
+      })
+      .catch(err => { res.status(500).json(err) })
+  })
+})
+
 exports.getCutById = functions.https.onRequest((req, res) => {
   cors(req, res, () => {
     const split = req.url.split('/')
