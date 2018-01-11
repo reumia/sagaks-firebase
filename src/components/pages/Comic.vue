@@ -12,10 +12,10 @@
         <span class="function"><i class="icon material-icons">crop_din</i> {{ cuts.length | formatCurrency }}</span>
       </Functions>
       <OwnerButtons>
-        <router-link :to="{ name: 'AddCut', query: { comicId: this.id } }" class="button button-success">{{ cuts.length > 0 ? '새 컷' : '첫번째 컷' }}</router-link>
+        <router-link :to="{ name: 'AddCut', query: { comicId: this.id } }" class="button button-success">{{ hasCuts ? '새 컷' : '첫번째 컷' }}</router-link>
       </OwnerButtons>
     </Introduction>
-    <Tree v-if="cuts.length > 0"></Tree>
+    <Tree v-if="hasCuts"></Tree>
   </div>
 </template>
 
@@ -26,7 +26,6 @@
   import Introduction from '@/components/partials/Introduction'
   import Tree from '@/components/partials/Tree'
   import filters from '@/utils/filters'
-  import { mapState } from 'vuex'
 
   export default {
     name: 'comic',
@@ -58,7 +57,9 @@
         .catch(err => new Error(err))
     },
     computed: {
-      ...mapState([ 'tree' ])
+      hasCuts () {
+        return this.cuts.length > 0
+      }
     }
   }
 </script>

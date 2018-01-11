@@ -6,7 +6,7 @@
         <i class="select-icon icon material-icons" :disabled="isInitial">keyboard_arrow_down</i>
         <select class="select-input input" v-model="computedParentId" @change="handleChange" :disabled="isInitial">
           <option :value="null" disabled>부모 컷을 선택해 주세요.</option>
-          <option v-for="item in siblings" :value="item.id">{{ item.title }}</option>
+          <option v-for="item in cuts" :value="item.id">{{ item.title }}</option>
         </select>
       </div>
       <!-- // 부모 컷 선택하기 -->
@@ -42,7 +42,7 @@
 <script>
   import Card from '@/components/partials/Card'
   import FileUploader from '@/components/partials/FileUploader'
-  import { mapActions } from 'vuex'
+  import { mapActions, mapState } from 'vuex'
 
   export default {
     name: 'add-cut',
@@ -68,8 +68,9 @@
       }
     },
     computed: {
+      ...mapState([ 'cuts' ]),
       isInitial () {
-        return this.comic && this.comic.cuts.length <= 0
+        return this.cuts.length <= 0
       },
       computedParentId: {
         get () {
@@ -78,9 +79,6 @@
         set (value) {
           this.$router.push({ name: 'AddCut', query: { comicId: this.comicId, parentId: value } })
         }
-      },
-      siblings () {
-        return this.isInitial === false ? this.comic.cuts : []
       }
     },
     methods: {

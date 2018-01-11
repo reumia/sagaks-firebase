@@ -9,6 +9,7 @@ Vue.use(Vuex)
 const state = {
   isGlobalNavigationVisible: false,
   comicsLatest: [],
+  cuts: [],
   tree: {},
   comic: {},
   cut: {}
@@ -33,8 +34,11 @@ const mutations = {
   DELETE_CUT (state) {
     state.cut = {}
   },
+  SET_CUTS (state, cuts) {
+    state.cuts = cuts
+  },
   async SET_TREE (state, cuts) {
-    const stratify = await d3.stratify().id((d) => d.id).parentId((d) => d.parentId)
+    const stratify = await d3.stratify().id(d => d.id).parentId(d => d.parentId)
     state.tree = stratify(cuts)
   }
 }
