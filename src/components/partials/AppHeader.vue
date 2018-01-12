@@ -35,7 +35,7 @@
     right: 0;
     display: flex;
     padding: 0 $space-unit / 4;
-    background-color: transparent;
+    background-color: $color-background;
   }
 
   .header-logo,
@@ -51,7 +51,7 @@
     line-height: $header-height;
     text-align: left;
     white-space: nowrap;
-    color: transparentize($color-text-light, .3);
+    color: $color-brand;
   }
 
   .header-logo-link {
