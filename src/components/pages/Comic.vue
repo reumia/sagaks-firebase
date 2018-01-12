@@ -1,21 +1,25 @@
 <template>
   <div class="page-comic" v-if="id">
-    <div class="comic-background" v-if="imageUrl" :style="{ backgroundImage: `url(${imageUrl})` }"></div>
     <Introduction
-      :title="title"
-      :descriptions="descriptions"
-      :status="status"
+            :imageUrl="imageUrl"
+            :title="title"
+            :descriptions="descriptions"
+            :status="status"
     >
       <Functions>
+        <Sticker :code="status"></Sticker>
         <span class="function"><i class="icon material-icons">access_time</i> {{ createAt | formatDate }}</span>
         <span class="function"><i class="icon material-icons">person</i> {{ email }}</span>
         <span class="function"><i class="icon material-icons">crop_din</i> {{ cuts.length | formatCurrency }}</span>
       </Functions>
-      <OwnerButtons>
-        <router-link :to="{ name: 'AddCut', query: { comicId: this.id } }" class="button button-small button-success">{{ hasCuts ? '새 컷' : '첫번째 컷' }}</router-link>
-      </OwnerButtons>
     </Introduction>
     <Tree v-if="hasCuts"></Tree>
+    <OwnerButtons>
+      <router-link :to="{ name: 'AddCut', query: { comicId: this.id } }" class="button button-small button-success">
+        <i class="icon material-icons">add</i>
+        {{ hasCuts ? '새 컷' : '첫 컷' }}
+      </router-link>
+    </OwnerButtons>
   </div>
 </template>
 
@@ -25,13 +29,14 @@
   import OwnerButtons from '@/components/partials/OwnerButtons'
   import Introduction from '@/components/partials/Introduction'
   import Tree from '@/components/partials/Tree'
+  import Sticker from '@/components/partials/Sticker'
   import filters from '@/utils/filters'
 
   export default {
     name: 'comic',
     props: [ 'id' ],
     filters: filters,
-    components: { Card, Functions, OwnerButtons, Introduction, Tree },
+    components: { Card, Functions, OwnerButtons, Introduction, Tree, Sticker },
     data () {
       return {
         createAt: null,
@@ -69,24 +74,5 @@
 
   .page-comic {
     overflow: hidden;
-  }
-  .comic-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: $space-unit * 24;
-    background-size: cover;
-    background-position: center center;
-    filter: blur(2px);
-    &:after {
-      content: '';
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: linear-gradient(transparentize($color-background-dark, .2), $color-background-dark);
-    }
   }
 </style>

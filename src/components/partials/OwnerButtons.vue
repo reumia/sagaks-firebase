@@ -14,6 +14,9 @@
   @import 'init';
 
   .owner-buttons {
+    position: fixed;
+    bottom: $space-unit;
+    right: $space-unit;
     display: flex;
     box-sizing: border-box;
     margin: 0;
@@ -21,7 +24,7 @@
     text-align: center;
     .button {
       border-width: 0;
-      border-radius: 0;
+      border-radius: $space-unit;
     }
   }
 </style>

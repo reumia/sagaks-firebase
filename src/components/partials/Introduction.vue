@@ -1,24 +1,19 @@
 <template>
   <div class="introduction">
-    <div class="introduction-image" v-if="imageUrl" :style="{ backgroundImage: `url(${imageUrl})`}"></div>
-    <div class="introduction-title">
-      {{ title }}
-      <Sticker :code="status"></Sticker>
-    </div>
-    <div class="introduction-descriptions">{{ descriptions }}</div>
-    <div class="introduction-button-wrap">
+    <div class="introduction-image" v-if="imageUrl" :style="{ backgroundImage: `url(${imageUrl})`}">
       <slot></slot>
     </div>
+    <div class="introduction-title">
+      {{ title }}
+    </div>
+    <div class="introduction-descriptions">{{ descriptions }}</div>
   </div>
 </template>
 
 <script>
-  import Sticker from '@/components/partials/Sticker'
-
   export default {
     name: 'introduction',
-    props: [ 'title', 'status', 'descriptions', 'imageUrl' ],
-    components: { Sticker },
+    props: [ 'imageUrl', 'title', 'status', 'descriptions', 'imageUrl' ],
     mounted () {
       console.log(this.$el.offsetTop, this.$el.offsetHeight)
     }
@@ -30,28 +25,21 @@
 
   .introduction {
     overflow: hidden;
-    position: relative;
-    z-index: 100;
-    border-radius: $radius-unit;
-    margin: ($space-unit * .5) ($space-unit * 1.5);
     max-width: $intro-width;
-    padding: ($space-unit);
-    background-color: $color-background;
-    box-shadow: $box-shadow-unit;
-    box-sizing: border-box;
   }
   .introduction-image {
-    padding-top: 33.333%;
+    position: relative;
     width: 100%;
-    height: 0;
+    height: 33.333vw;
     background-position: center center;
     background-size: cover;
   }
   .introduction-title {
+    margin: $space-unit $space-unit 0;
     font-weight: bold;
   }
   .introduction-descriptions {
-    margin-top: $space-unit / 4;
+    margin: ($space-unit / 2) $space-unit 0;
     color: $color-text-light;
     font-size: $font-size-small;
     word-break: break-all;

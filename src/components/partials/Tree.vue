@@ -75,7 +75,7 @@
       },
       setInitialZoom () {
         this.zoom.translateX = window.innerWidth / 2
-        this.zoom.translateY = this.$el.offsetTop
+        this.zoom.translateY = this.$el.offsetTop + this.rectHeight
         this.zoom.scale = 1
       },
       initZoom (isTransition) {
@@ -114,7 +114,7 @@
   .tree {
     svg {
       position: fixed;
-      top: $header-height;
+      top: 0;
       bottom: 0;
       left: 0;
       right: 0;
@@ -145,7 +145,7 @@
 
     .link {
       fill: none;
-      stroke: #ccc;
+      stroke: #aaa;
       stroke-width: 1px;
     }
   }
