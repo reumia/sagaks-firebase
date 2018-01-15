@@ -8,6 +8,7 @@
     "start": "node build/dev-server.js",
     "build": "node build/build.js",
     "deploy": "yarn build && firebase deploy",
+    "deploy:hosting": "yarn build && firebase deploy --only hosting",
     "lint": "eslint --ext .js,.vue src",
     "api:dev": "cd ./functions && firebase serve --only functions"
   },
