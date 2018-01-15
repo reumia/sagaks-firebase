@@ -8,6 +8,7 @@ Vue.use(Vuex)
 
 const state = {
   isGlobalNavigationVisible: false,
+  isTreeWorking: false,
   comicsLatest: [],
   cuts: [],
   tree: {},
@@ -40,6 +41,9 @@ const mutations = {
   async SET_TREE (state, cuts) {
     const stratify = await d3.stratify().id(d => d.id).parentId(d => d.parentId)
     state.tree = stratify(cuts)
+  },
+  SET_TREE_WORKING_STATE (state, boolean) {
+    state.isTreeWorking = boolean
   }
 }
 

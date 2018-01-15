@@ -1,5 +1,5 @@
 <template>
-  <div class="introduction">
+  <div class="introduction" @click="handleClick" :class="{ 'active': isTreeWorking }">
     <div class="introduction-image" v-if="imageUrl" :style="{ backgroundImage: `url(${imageUrl})`}"></div>
     <div class="introduction-body">
       <div class="introduction-title">{{ title }}</div>
@@ -12,11 +12,22 @@
 </template>
 
 <script>
+  import { mapState } from 'vuex'
+
   export default {
     name: 'introduction',
     props: [ 'imageUrl', 'title', 'status', 'descriptions', 'imageUrl' ],
+    computed: {
+      ...mapState([ 'isTreeWorking' ])
+    },
     mounted () {
       console.log(this.$el.offsetTop, this.$el.offsetHeight)
+    },
+    methods: {
+      handleClick () {
+        console.log('aaa')
+        this.isActive = this.isActive === false
+      }
     }
   }
 </script>
@@ -29,7 +40,10 @@
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    filter: grayscale(50%);
+    transition: filter 0.3s ease;
+    &.active {
+      filter: blur(3px) opacity(50%) grayscale(100%);
+    }
     @media screen and (min-width: 640px) {
       max-width: $site-width;
       margin: $space-unit ($space-unit / 2);

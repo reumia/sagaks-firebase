@@ -17,7 +17,7 @@
 
 <script>
   import * as d3 from 'd3'
-  import { mapState } from 'vuex'
+  import { mapState, mapMutations } from 'vuex'
 
   export default {
     name: 'tree',
@@ -47,6 +47,7 @@
       }
     },
     methods: {
+      ...mapMutations([ 'SET_TREE_WORKING_STATE' ]),
       getTree () {
         const tree = d3
           .tree()
@@ -85,7 +86,10 @@
         // Drag & Zoom simple example - https://bl.ocks.org/mbostock/6123708
         // D3 Zoom initial transition state - https://github.com/d3/d3/issues/2521
         // Zoom to bound box - https://bl.ocks.org/mbostock/9656675
-        const zoom = d3.zoom().scaleExtent([0.2, 1.5]).on('zoom', this.onZoom)
+        const zoom = d3.zoom().scaleExtent([0.2, 1.5])
+          .on('start', this.onZoomStart)
+          .on('zoom', this.onZoom)
+          .on('end', this.onZoomEnd)
         const selection = d3.select(this.$refs.svg)
         const initialZoomState = d3.zoomIdentity
           .translate(this.zoom.translateX, this.zoom.translateY)
@@ -102,6 +106,12 @@
         this.zoom.translateX = d3.event.transform.x
         this.zoom.translateY = d3.event.transform.y
         this.zoom.scale = d3.event.transform.k
+      },
+      onZoomStart () {
+        this.SET_TREE_WORKING_STATE(true)
+      },
+      onZoomEnd () {
+        this.SET_TREE_WORKING_STATE(false)
       },
       handleClick (d) {
         this.$router.push({ name: 'Cut', params: { 'id': d.id } })
