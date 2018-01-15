@@ -7,7 +7,7 @@
             :status="status"
     >
       <Functions>
-        <Sticker :code="status"></Sticker>
+        <span class="function"><Sticker :code="status"></Sticker></span>
         <span class="function"><i class="icon material-icons">access_time</i> {{ createAt | formatDate }}</span>
         <span class="function"><i class="icon material-icons">person</i> {{ email }}</span>
         <span class="function"><i class="icon material-icons">crop_din</i> {{ cuts.length | formatCurrency }}</span>

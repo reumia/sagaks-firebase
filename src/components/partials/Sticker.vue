@@ -39,13 +39,9 @@ export default {
 
   [class^=sticker] {
     display: inline-block;
-    border-radius: $radius-unit;
-    padding: 3px 6px 1px;
-    background-color: $color-text;
     color: $color-background;
     font-size: $font-size-smallest;
     font-weight: bold;
-    vertical-align: middle;
   }
 
   [class^=sticker] ~ [class^=sticker] {
@@ -53,16 +49,16 @@ export default {
   }
 
   .sticker-default {
-    background-color: $color-text-light;
+    color: $color-text-light;
   }
   .sticker-success {
-    background-color: $color-success;
+    color: $color-success;
   }
   .sticker-warning {
-    background-color: $color-warning;
+    color: $color-warning;
   }
   .sticker-danger {
-    background-color: $color-danger;
+    color: $color-danger;
   }
   .sticker-hot {
     color: hotpink;

@@ -36,6 +36,7 @@
     display: flex;
     padding: 0 $space-unit / 4;
     background-color: $color-background;
+    box-shadow: $box-shadow-unit;
   }
 
   .header-logo,
