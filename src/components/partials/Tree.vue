@@ -86,10 +86,7 @@
         // Drag & Zoom simple example - https://bl.ocks.org/mbostock/6123708
         // D3 Zoom initial transition state - https://github.com/d3/d3/issues/2521
         // Zoom to bound box - https://bl.ocks.org/mbostock/9656675
-        const zoom = d3.zoom().scaleExtent([0.2, 1.5])
-          .on('zoom', this.onZoom)
-//          .on('start', this.onZoomStart)
-//          .on('end', this.onZoomEnd)
+        const zoom = d3.zoom().scaleExtent([0.2, 1.5]).on('zoom', this.onZoom)
         const selection = d3.select(this.$refs.svg)
         const initialZoomState = d3.zoomIdentity
           .translate(this.zoom.translateX, this.zoom.translateY)
