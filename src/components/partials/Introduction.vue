@@ -31,11 +31,13 @@
     flex-direction: column;
     filter: grayscale(50%);
     @media screen and (min-width: 640px) {
+      max-width: $site-width;
       margin: $space-unit ($space-unit / 2);
       flex-direction: row;
       justify-content: center;
     }
     @media screen and (min-width: 960px) {
+      margin: $space-unit auto;
     }
   }
   .introduction-image {
@@ -74,9 +76,15 @@
     color: $color-text-light;
   }
   .introduction-descriptions {
-    margin: ($space-unit / 4) 0 ($space-unit / 2);
+    margin-top: ($space-unit / 4);
     color: $color-text-lighter;
     font-size: $font-size-small;
     word-break: break-all;
+  }
+  .introduction-functions {
+    margin-top: $space-unit;
+    @media screen and (min-width: 640px) {
+      margin-top: ($space-unit * 0.5);
+    }
   }
 </style>

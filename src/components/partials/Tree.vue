@@ -1,11 +1,13 @@
 <template>
   <div class="tree">
-    <svg :width="viewerWidth" :height="viewerHeight" ref="svg" @click="resetZoom">
+    <svg :width="viewerWidth" :height="viewerHeight" :viewBox="`0 0 ${viewerWidth} ${viewerHeight}`" ref="svg" @click="resetZoom">
       <g :transform="`translate(${zoom.translateX}, ${zoom.translateY})scale(${zoom.scale})`">
         <path v-for="line in lines" class="link" :d="getDiagonal(line)" :key="`line-${line.id}`"></path>
         <g v-for="node in nodes" class="node" :transform="getNodeTransform(node)" :key="`node-${node.id}`" @click="handleClick(node)">
           <rect class="rect-background" r="10" :width="rectWidth" :height="rectHeight" :transform="`translate(${rectWidth / -2}, ${rectHeight / -2})`"></rect>
-          <image :width="rectWidth" :height="rectHeight" :transform="`translate(${rectWidth / -2}, ${rectHeight / -2})`" :href="node.data.imageUrl"></image>
+          <!-- https://stackoverflow.com/a/43754117/6081244 -->
+          <!-- Safari에서 image의 정상적인 렌더링을 위해서는 href 대신 xlink:href를 사용해야 한다. -->
+          <image :width="rectWidth" :height="rectHeight" :transform="`translate(${rectWidth / -2}, ${rectHeight / -2})`" :xlink:href="node.data.imageUrl"></image>
           <rect class="rect-mask" r="10" :width="rectWidth" :height="rectHeight" :transform="`translate(${rectWidth / -2}, ${rectHeight / -2})`"></rect>
         </g>
       </g>
