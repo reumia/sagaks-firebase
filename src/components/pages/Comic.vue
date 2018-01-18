@@ -73,6 +73,5 @@
   @import 'init';
 
   .page-comic {
-    overflow: hidden;
   }
 </style>

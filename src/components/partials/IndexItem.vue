@@ -5,11 +5,9 @@
         <div class="image-wrap" :style="{ backgroundImage: `url(${imageUrl})` }"></div>
         <div class="texts">
           <div class="title">{{ title }}</div>
-          <div class="date">{{ createdAt | formatDate }}</div>
           <div class="descriptions">{{ descriptions }}</div>
         </div>
       </div>
-
     </div>
   </router-link>
 </template>
@@ -30,69 +28,61 @@
   .index-item {
     box-sizing: border-box;
     display: block;
+    padding: $space-unit / 4;
+    width: 50%;
     color: $color-text;
     text-decoration: none;
-    @media screen and (min-width: 376px) {
+    @media screen and (min-width: 640px) {
+      width: 33.333%;
     }
-    @media screen and (min-width: 769px) {
+    @media screen and (min-width: 960px) {
+      width: 25%;
     }
-  }
-
-  .index-item ~ .index-item {
-    margin-top: $space-unit;
   }
 
   .index-item-body {
     position: relative;
     box-sizing: border-box;
     background-color: $color-background;
-    &:after {
-      content: '';
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      border: 1px solid rgba(0,0,0,.1);
-    }
   }
 
   .index-item-contents {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    padding-top: 33.333%;
-    .image-wrap,
-    .texts {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-    }
     .image-wrap {
+      position: relative;
+      display: block;
+      padding-top: 100%;
       background-size: cover;
       background-color: $color-disabled;
       background-position: center center;
+      &:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        border: 1px solid rgba(0,0,0,.1);
+      }
     }
     .texts {
-      padding: $space-unit;
-      font-size: $font-size-small;
-      color: $color-background;
-      background-image: linear-gradient(90deg, transparentize($color-text-lighter, .2) 20%, rgba(180,180,180,.1) 80%);
-      .title,
-      .date {
-        text-shadow: 0 2px 1px rgba(0,0,0,.2);
-      }
-      .date,
-      .descriptions {
-        margin-top: $space-unit / 4;
-        font-size: $font-size-smaller;
-        color: $color-background-darker;
+      border-color: $color-disabled;
+      border-style: solid;
+      border-width: 0 1px 1px;
+      padding: ($space-unit * .75) ($space-unit * .75) 0;
+      font-size: $font-size-smaller;
+      .title {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: $font-size-small;
+        font-weight: bold;
       }
       .descriptions {
-        display: none;
+        overflow: hidden;
         margin-top: $space-unit / 2;
+        height: $space-unit * 4;
+        color: $color-text-lighter;
+        font-size: $font-size-smaller;
         word-break: break-all;
       }
     }

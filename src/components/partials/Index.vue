@@ -28,5 +28,8 @@
   @import 'init';
 
   .item-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    margin: $space-unit / -4;
   }
 </style>

@@ -1,7 +1,6 @@
 <template>
   <div class="page-home">
-    <Carousel></Carousel>
-    <Card title="최근사각">
+    <Card>
       <Index :items="$store.state.comicsLatest"></Index>
     </Card>
   </div>

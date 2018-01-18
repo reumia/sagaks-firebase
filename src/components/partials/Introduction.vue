@@ -36,7 +36,6 @@
   @import 'init';
 
   .introduction {
-    overflow: hidden;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -45,20 +44,17 @@
       filter: blur(3px) opacity(50%) grayscale(100%);
     }
     @media screen and (min-width: 640px) {
-      max-width: $site-width;
-      margin: $space-unit ($space-unit / 2);
       flex-direction: row;
       justify-content: center;
     }
-    @media screen and (min-width: 960px) {
-      margin: $space-unit auto;
-    }
   }
   .introduction-image {
-    box-sizing: border-box;
-    position: relative;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
     width: 100%;
-    height: 33.333vw;
+    height: 25vw;
     background-position: center center;
     background-size: cover;
     &:after {
@@ -68,12 +64,9 @@
       bottom: 0;
       left: 0;
       right: 0;
-      border: 1px solid rgba(0,0,0,.1);
+      background-image: linear-gradient(transparentize($color-background-dark, .1), $color-background-dark);
     }
     @media screen and (min-width: 640px) {
-      margin: 0 ($space-unit / 2);
-      width: 50%;
-      height: auto;
     }
   }
   .introduction-body {
@@ -83,7 +76,6 @@
     @media screen and (min-width: 640px) {
       padding: ($space-unit / 2) $space-unit;
       width: 50%;
-      text-align: left;
     }
   }
   .introduction-title {
@@ -97,8 +89,5 @@
   }
   .introduction-functions {
     margin-top: $space-unit;
-    @media screen and (min-width: 640px) {
-      margin-top: ($space-unit * 0.5);
-    }
   }
 </style>

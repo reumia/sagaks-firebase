@@ -1,12 +1,12 @@
 <template>
   <header class="app__header">
+    <div class="header-logo">
+      <router-link :to="{name: 'Home'}" class="header-logo-link">SAGAKSAGAK</router-link>
+    </div>
     <div class="header-menu">
       <button class="header-menu-button" type="button" @click="TOGGLE_GLOBAL_NAVIGATION">
         <i class="material-icons icon">menu</i>
       </button>
-    </div>
-    <div class="header-logo">
-      <router-link :to="{name: 'Home'}" class="header-logo-link">SAGAKSAGAK</router-link>
     </div>
   </header>
 </template>
@@ -30,13 +30,11 @@
 
   .app__header {
     position: relative;
-    top: 0;
-    left: 0;
-    right: 0;
     display: flex;
+    justify-content: center;
+    margin: 0 auto;
     padding: 0 $space-unit / 4;
-    background-color: $color-background;
-    box-shadow: $box-shadow-unit;
+    max-width: $site-width;
   }
 
   .header-logo,
@@ -52,7 +50,7 @@
     line-height: $header-height;
     text-align: left;
     white-space: nowrap;
-    color: $color-brand;
+    color: transparentize($color-text, .4);
   }
 
   .header-logo-link {
