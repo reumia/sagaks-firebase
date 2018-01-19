@@ -15,7 +15,7 @@
     </Introduction>
     <Tree v-if="hasCuts"></Tree>
     <OwnerButtons>
-      <router-link :to="{ name: 'AddCut', query: { comicId: this.id } }" class="button button-small button-success">
+      <router-link :to="{ name: 'AddCut', params: { comicId: this.id } }" class="button button-small button-success">
         <i class="icon material-icons">add</i>
         {{ hasCuts ? '새 컷' : '첫 컷' }}
       </router-link>
@@ -59,7 +59,7 @@
           this.imageUrl = response.imageUrl
           this.cuts = response.cuts
         })
-        .catch(err => new Error(err))
+        .catch(err => err)
     },
     computed: {
       hasCuts () {

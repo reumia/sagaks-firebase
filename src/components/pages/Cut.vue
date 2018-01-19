@@ -9,11 +9,11 @@
         marginTop: `${sagakWidth / -2}px`,
         transform: `translateX(${scrollHorizontal}px)`
       }">
-        <Sagak v-for="item in siblings"
+        <Sagak v-for="item in navigation.siblings"
           :key="item.id"
           :data="item"
           :width="sagakWidth"
-          :isCurrent="item.id === parseInt(id, 10)"
+          :isCurrent="isCurrent(item.id)"
           :margin="sagakMargin"
         ></Sagak>
       </div>
@@ -30,15 +30,41 @@
     name: 'cut',
     props: [ 'id' ],
     components: { Sagak },
+    beforeMount () {
+      this.$store.dispatch('GET_CUTS_NAVIGATION_BY_ID', {id: this.id})
+        .then(response => {
+          this.navigation = response
+        })
+        .catch(err => console.warn(err))
+    },
+    mounted () {
+      this.getScrollHorizontal()
+    },
+    beforeUpdate () {
+      this.getScrollHorizontal()
+    },
+    data () {
+      return {
+        sagakWidth: spaceUnit * 18,
+        sagakMargin: spaceUnit,
+        scrollHorizontal: null,
+        navigation: {
+          siblings: []
+        }
+      }
+    },
     computed: {
       getSiblingsWidth () {
-        return (this.sagakWidth + this.sagakMargin) * this.siblings.length
+        return (this.sagakWidth + this.sagakMargin) * this.navigation.siblings.length
       }
     },
     methods: {
+      isCurrent (id) {
+        return id === this.id
+      },
       getIndex () {
-        return this.siblings.findIndex(item => {
-          return item.id === parseInt(this.id, 10)
+        return this.navigation.siblings.findIndex(item => {
+          return this.isCurrent(item.id)
         })
       },
       getScrollHorizontal () {
@@ -50,83 +76,6 @@
       // TODO : 키보드 이동
       // TODO : 부모 자식 이동
       moveTo () {
-      }
-    },
-    beforeUpdate () {
-      this.getScrollHorizontal()
-    },
-    mounted () {
-      this.getScrollHorizontal()
-    },
-    data () {
-      return {
-        sagakWidth: spaceUnit * 18,
-        sagakMargin: spaceUnit,
-        scrollHorizontal: null,
-        siblings: [
-          {
-            id: 0,
-            title: '유미의 세포들 #1',
-            descriptions: '',
-            imageUrl: '/static/example/cut_02.jpg',
-            owner: 0,
-            likes: 100
-          },
-          {
-            id: 2,
-            title: '유미의 세포들 #2-2',
-            descriptions: '',
-            imageUrl: '/static/example/cut_04.jpg',
-            owner: 1,
-            likes: 20
-          },
-          {
-            id: 3,
-            title: '유미의 세포들 #2-3',
-            descriptions: '',
-            imageUrl: '/static/example/cut_05.jpg',
-            owner: 1,
-            likes: 10
-          },
-          {
-            id: 4,
-            title: '유미의 세포들 #2-3',
-            descriptions: '',
-            imageUrl: '/static/example/cut_06.jpg',
-            owner: 2,
-            likes: 5
-          },
-          {
-            id: 5,
-            title: '유미의 세포들 #2-3',
-            descriptions: '',
-            imageUrl: '/static/example/cut_07.jpg',
-            owner: 2,
-            likes: 1
-          },
-          {
-            id: 6,
-            title: '유미의 세포들 #2-3',
-            descriptions: '',
-            imageUrl: '/static/example/cut_08.jpg',
-            owner: 2,
-            likes: 0
-          }
-        ],
-        parent: {
-          id: 1,
-          title: '유미의 세포들 #0',
-          owner: 0,
-          likes: 241
-        },
-        child: {
-          id: 4,
-          title: '유미의 세포들 #2-1',
-          descriptions: '',
-          imageUrl: '/static/example/cut_03.jpg',
-          owner: 2,
-          likes: 13
-        }
       }
     }
   }

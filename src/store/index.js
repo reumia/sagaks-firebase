@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import _ from 'lodash'
 import * as d3 from 'd3-hierarchy'
 import actions from './actions'
 
@@ -12,7 +11,7 @@ const state = {
   comicsLatest: [],
   cuts: [],
   tree: {},
-  comic: {},
+  comicId: null,
   cut: {}
 }
 
@@ -23,17 +22,11 @@ const mutations = {
   HIDE_GLOBAL_NAVIGATION (state) {
     state.isGlobalNavigationVisible = false
   },
-  DELETE_COMIC (state) {
-    state.comic = {}
+  SET_COMIC_ID (state, id) {
+    state.comicId = id
   },
   SET_LATEST_COMICS (state, comics) {
     state.comicsLatest = comics
-  },
-  SET_CUT (state, cut) {
-    state.cut = _.assignIn(state.cut, cut)
-  },
-  DELETE_CUT (state) {
-    state.cut = {}
   },
   SET_CUTS (state, cuts) {
     state.cuts = cuts

@@ -13,8 +13,6 @@
     <!-- 네비게이션 버튼 -->
     <nav class="nav-list">
       <router-link :to="{ name: 'Home' }" class="nav-list-item">About SAGAKSAGAK</router-link>
-      <router-link :to="{ name: 'Cut', params: { id: 0 } }" class="nav-list-item">Cut 0</router-link>
-      <router-link :to="{ name: 'Cut', params: { id: 3 } }" class="nav-list-item">Cut 3</router-link>
     </nav>
   </div>
 </template>

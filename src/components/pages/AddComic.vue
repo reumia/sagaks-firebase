@@ -22,7 +22,7 @@
 <script>
   import Card from '@/components/partials/Card'
   import FileUploader from '@/components/partials/FileUploader'
-  import { mapMutations, mapActions } from 'vuex'
+  import { mapActions } from 'vuex'
 
   export default {
     name: 'add-comic',
@@ -39,7 +39,6 @@
       }
     },
     methods: {
-      ...mapMutations([ 'DELETE_COMIC' ]),
       ...mapActions([ 'ADD_COMIC' ]),
       add () {
         this.ADD_COMIC({

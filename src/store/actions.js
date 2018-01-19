@@ -11,6 +11,7 @@ const actions = {
     const response = await axios.get(`/getComicById/${id}`)
     const hasCuts = response.data.cuts.length > 0
 
+    commit('SET_COMIC_ID', id)
     commit('SET_CUTS', response.data.cuts)
     if (hasCuts) commit('SET_TREE', response.data.cuts)
 
@@ -29,10 +30,26 @@ const actions = {
 
     return response.data
   },
-  async GET_CUT_BY_ID ({ commit }, { comicId, cutId }) {
-    const response = await axios.get(`/getCutById/${comicId}/${cutId}`)
+  async GET_CUTS_NAVIGATION_BY_ID ({ commit, state, dispatch }, { id }) {
+    // TODO : state.cuts 존재여부 검증 필요
+    // TODO : state.comic 검증 필요
+    const hasComic = typeof state.comic.id !== 'undefined'
 
-    return response.data
+    if (hasComic === false) {
+      const comic = await axios.get(`/getComicByCutId/${id}`)
+      console.log(comic)
+    }
+
+    const current = _.find(state.cuts, o => o.id === id)
+    const child = _.find(state.cuts, o => o.parentId === id)
+    const parent = _.find(state.cuts, o => o.id === current.parentId)
+    const siblings = _.filter(state.cuts, o => o.parentId === parent.id)
+
+    return {
+      siblings: siblings,
+      parent: parent,
+      child: child
+    }
   },
   async INIT_ADD_CUT ({ commit, state, dispatch }, { comicId, parentId }) {
     let comic, parentCut

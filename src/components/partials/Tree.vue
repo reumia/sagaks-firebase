@@ -26,7 +26,7 @@
         this.renderTree()
       })
     },
-    computed: mapState([ 'tree' ]),
+    computed: mapState([ 'tree', 'comicId' ]),
     data () {
       // TODO : 뷰어크기 윈도우 리사이즈 대응
       return {
@@ -111,7 +111,7 @@
         else this.SET_TREE_WORKING_STATE(false)
       },
       handleClick (d) {
-        this.$router.push({ name: 'Cut', params: { 'id': d.id } })
+        this.$router.push({ name: 'Cut', params: { 'comicId': this.comicId, 'cutId': d.id } })
       }
     }
   }

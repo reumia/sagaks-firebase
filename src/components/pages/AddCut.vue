@@ -77,7 +77,7 @@
           return this.parentId ? this.parentId : null
         },
         set (value) {
-          this.$router.push({ name: 'AddCut', query: { comicId: this.comicId, parentId: value } })
+          this.$router.push({ name: 'AddCut', params: { comicId: this.comicId }, query: { parentId: value } })
         }
       }
     },
@@ -112,7 +112,7 @@
           email: this.email,
           password: this.password
         })
-          .then(response => this.$router.push({ name: 'Cut', params: { id: response.id } }))
+          .then(response => this.$router.push({ name: 'Cut', params: { comicId: this.comicId, cutId: response.id } }))
           .catch(err => {
             throw err
           })

@@ -1,45 +1,46 @@
-[debug] [2018-01-18T06:21:38.163Z] ----------------------------------------------------------------------
-[debug] [2018-01-18T06:21:38.165Z] Command:       /usr/local/Cellar/node/8.2.1/bin/node /usr/local/bin/firebase serve --only functions
-[debug] [2018-01-18T06:21:38.166Z] CLI Version:   3.16.0
-[debug] [2018-01-18T06:21:38.166Z] Platform:      darwin
-[debug] [2018-01-18T06:21:38.166Z] Node Version:  v8.2.1
-[debug] [2018-01-18T06:21:38.166Z] Time:          Thu Jan 18 2018 15:21:38 GMT+0900 (KST)
-[debug] [2018-01-18T06:21:38.166Z] ----------------------------------------------------------------------
+[debug] [2018-01-18T09:27:20.343Z] ----------------------------------------------------------------------
+[debug] [2018-01-18T09:27:20.345Z] Command:       /usr/local/Cellar/node/8.2.1/bin/node /usr/local/bin/firebase serve --only functions
+[debug] [2018-01-18T09:27:20.345Z] CLI Version:   3.16.0
+[debug] [2018-01-18T09:27:20.345Z] Platform:      darwin
+[debug] [2018-01-18T09:27:20.345Z] Node Version:  v8.2.1
+[debug] [2018-01-18T09:27:20.346Z] Time:          Thu Jan 18 2018 18:27:20 GMT+0900 (KST)
+[debug] [2018-01-18T09:27:20.346Z] ----------------------------------------------------------------------
 [debug] 
-[debug] [2018-01-18T06:21:38.177Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
-[debug] [2018-01-18T06:21:38.178Z] > authorizing via signed-in user
-[debug] [2018-01-18T06:21:38.179Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
-[debug] [2018-01-18T06:21:38.179Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+[debug] [2018-01-18T09:27:20.357Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-01-18T09:27:20.357Z] > authorizing via signed-in user
+[debug] [2018-01-18T09:27:20.359Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2018-01-18T09:27:20.359Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
  { refresh_token: '1/IUNo7Bcd98vzTA-U0dzPyX5gv5Y3OzOdJgnjyM0sCrA',
   client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
   client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
   grant_type: 'refresh_token',
   scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
- Thu Jan 18 2018 15:21:38 GMT+0900 (KST)
-[debug] [2018-01-18T06:21:38.488Z] <<< HTTP RESPONSE 200
-[debug] [2018-01-18T06:21:38.499Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/sagaksagak-f152b  
+ Thu Jan 18 2018 18:27:20 GMT+0900 (KST)
+[debug] [2018-01-18T09:27:20.659Z] <<< HTTP RESPONSE 200
+[debug] [2018-01-18T09:27:20.675Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/sagaksagak-f152b  
   
- Thu Jan 18 2018 15:21:38 GMT+0900 (KST)
-[debug] [2018-01-18T06:21:39.447Z] <<< HTTP RESPONSE 200
-[debug] [2018-01-18T06:21:39.447Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/sagaksagak-f152b/tokens  
+ Thu Jan 18 2018 18:27:20 GMT+0900 (KST)
+[debug] [2018-01-18T09:27:21.642Z] <<< HTTP RESPONSE 200
+[debug] [2018-01-18T09:27:21.643Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/sagaksagak-f152b/tokens  
   
- Thu Jan 18 2018 15:21:39 GMT+0900 (KST)
-[debug] [2018-01-18T06:21:40.179Z] <<< HTTP RESPONSE 200
+ Thu Jan 18 2018 18:27:21 GMT+0900 (KST)
+[debug] [2018-01-18T09:27:22.390Z] <<< HTTP RESPONSE 200
 [info] 
 [info] === Serving from '/Users/1100463/Development/sagaks-firebase'...
 [info] 
 [info] i  functions: Preparing to emulate functions.
-[debug] [2018-01-18T06:21:40.901Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/sagaksagak-f152b  
+[debug] [2018-01-18T09:27:23.179Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/sagaksagak-f152b  
   
- Thu Jan 18 2018 15:21:40 GMT+0900 (KST)
-[debug] [2018-01-18T06:21:40.901Z] >>> HTTP REQUEST GET https://apikeys.googleapis.com/v1/projects/sagaksagak-f152b/apiKeys  
+ Thu Jan 18 2018 18:27:23 GMT+0900 (KST)
+[debug] [2018-01-18T09:27:23.180Z] >>> HTTP REQUEST GET https://apikeys.googleapis.com/v1/projects/sagaksagak-f152b/apiKeys  
   
- Thu Jan 18 2018 15:21:40 GMT+0900 (KST)
-[debug] [2018-01-18T06:21:41.970Z] <<< HTTP RESPONSE 200
-[debug] [2018-01-18T06:21:42.037Z] <<< HTTP RESPONSE 200
-[info] ✔  functions: addComic: http://localhost:5000/sagaksagak-f152b/us-central1/addComic
-[info] ✔  functions: getCutsByComicId: http://localhost:5000/sagaksagak-f152b/us-central1/getCutsByComicId
+ Thu Jan 18 2018 18:27:23 GMT+0900 (KST)
+[debug] [2018-01-18T09:27:24.275Z] <<< HTTP RESPONSE 200
+[debug] [2018-01-18T09:27:24.286Z] <<< HTTP RESPONSE 200
+[info] ✔  functions: getComicByCutId: http://localhost:5000/sagaksagak-f152b/us-central1/getComicByCutId
 [info] ✔  functions: getComicById: http://localhost:5000/sagaksagak-f152b/us-central1/getComicById
 [info] ✔  functions: getComics: http://localhost:5000/sagaksagak-f152b/us-central1/getComics
-[info] ✔  functions: getCutById: http://localhost:5000/sagaksagak-f152b/us-central1/getCutById
+[info] ✔  functions: getCutsByComicId: http://localhost:5000/sagaksagak-f152b/us-central1/getCutsByComicId
+[info] ✔  functions: addComic: http://localhost:5000/sagaksagak-f152b/us-central1/addComic
 [info] ✔  functions: addCut: http://localhost:5000/sagaksagak-f152b/us-central1/addCut
+[info] ✔  functions: getCutById: http://localhost:5000/sagaksagak-f152b/us-central1/getCutById

@@ -18,16 +18,16 @@ const router = new Router({
       component: Home
     },
     {
-      path: '/cut/add',
+      path: '/comic/:comicId/cut/add',
       name: 'AddCut',
       component: AddCut,
       props: route => ({
-        comicId: route.query.comicId,
+        comicId: route.params.comicId,
         parentId: route.query.parentId
       })
     },
     {
-      path: '/cut/:id',
+      path: '/comic/:comicId/cut/:cutId',
       name: 'Cut',
       component: Cut,
       props: true
