@@ -12,6 +12,7 @@
         <Sagak v-for="item in navigation.siblings"
           :key="item.id"
           :data="item"
+          :comicId="comicId"
           :width="sagakWidth"
           :isCurrent="isCurrent(item.id)"
           :margin="sagakMargin"
@@ -28,10 +29,10 @@
 
   export default {
     name: 'cut',
-    props: [ 'id' ],
+    props: [ 'comicId', 'cutId' ],
     components: { Sagak },
     beforeMount () {
-      this.$store.dispatch('GET_CUTS_NAVIGATION_BY_ID', {id: this.id})
+      this.$store.dispatch('GET_CUTS_NAVIGATION_BY_ID', { comicId: this.comicId, cutId: this.cutId })
         .then(response => {
           this.navigation = response
         })
@@ -60,7 +61,7 @@
     },
     methods: {
       isCurrent (id) {
-        return id === this.id
+        return id === this.cutId
       },
       getIndex () {
         return this.navigation.siblings.findIndex(item => {
@@ -102,24 +103,6 @@
     background-size: cover;
     background-position: center center;
     -webkit-filter: grayscale(100%);
-    &:after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 50%;
-      background: linear-gradient(transparent, $color-background-dark);
-    }
-    &:before {
-      content: '';
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background-color: transparentize($color-background-dark, .05);
-    }
   }
 
   .cut-title {

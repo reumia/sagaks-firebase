@@ -1,6 +1,6 @@
 <template>
   <router-link
-    :to="{ name: 'Cut', params: { id: data.id } }"
+    :to="{ name: 'Cut', params: { comicId: comicId, cutId: data.id } }"
     class="sagak"
     :class="{ active: isCurrent }"
     :style="{ width: `${width}px`, margin: `0 ${margin/2}px` }"
@@ -12,7 +12,7 @@
 <script>
   export default {
     name: 'sagak',
-    props: ['data', 'isCurrent', 'width', 'margin'],
+    props: [ 'data', 'isCurrent', 'width', 'margin', 'comicId' ],
     data () {
       return {
       }

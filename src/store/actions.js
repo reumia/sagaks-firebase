@@ -30,25 +30,27 @@ const actions = {
 
     return response.data
   },
-  async GET_CUTS_NAVIGATION_BY_ID ({ commit, state, dispatch }, { id }) {
-    // TODO : state.cuts 존재여부 검증 필요
-    // TODO : state.comic 검증 필요
-    const hasComic = typeof state.comic.id !== 'undefined'
+  async GET_CUTS_NAVIGATION_BY_ID ({ commit, state, dispatch }, { comicId, cutId }) {
+    const isStateEmpty = state.cuts.length <= 0
+    const getResult = (cuts) => {
+      const isEmpty = cuts.length <= 0
+      const current = _.find(cuts, o => o.id === cutId)
+      const child = _.find(cuts, o => o.parentId === cutId)
+      const parent = _.find(cuts, o => o.id === current.parentId)
+      const siblings = _.filter(cuts, o => o.parentId === parent.id)
 
-    if (hasComic === false) {
-      const comic = await axios.get(`/getComicByCutId/${id}`)
-      console.log(comic)
+      return {
+        siblings: isEmpty ? [] : siblings,
+        parent: isEmpty ? {} : parent,
+        child: isEmpty ? {} : child
+      }
     }
 
-    const current = _.find(state.cuts, o => o.id === id)
-    const child = _.find(state.cuts, o => o.parentId === id)
-    const parent = _.find(state.cuts, o => o.id === current.parentId)
-    const siblings = _.filter(state.cuts, o => o.parentId === parent.id)
-
-    return {
-      siblings: siblings,
-      parent: parent,
-      child: child
+    if (isStateEmpty) {
+      const response = await dispatch('GET_COMIC_BY_ID', { id: comicId })
+      return getResult(response.cuts)
+    } else {
+      return getResult(state.cuts)
     }
   },
   async INIT_ADD_CUT ({ commit, state, dispatch }, { comicId, parentId }) {
