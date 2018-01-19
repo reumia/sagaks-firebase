@@ -7,9 +7,10 @@
       <div class="siblings" :style="{
         width: `${getSiblingsWidth}px`,
         marginTop: `${sagakWidth / -2}px`,
-        transform: `translateX(${scrollHorizontal}px)`
+        transform: `translateX(${translate.x}px)`
       }">
-        <Sagak v-for="item in navigation.siblings"
+        <Sagak
+          v-for="item in navigation.siblings"
           :key="item.id"
           :data="item"
           :comicId="comicId"
@@ -39,16 +40,19 @@
         .catch(err => console.warn(err))
     },
     mounted () {
-      this.getScrollHorizontal()
+      this.getX()
     },
     beforeUpdate () {
-      this.getScrollHorizontal()
+      this.getX()
     },
     data () {
       return {
         sagakWidth: spaceUnit * 18,
         sagakMargin: spaceUnit,
-        scrollHorizontal: null,
+        translate: {
+          x: null,
+          y: null
+        },
         navigation: {
           siblings: []
         }
@@ -64,15 +68,13 @@
         return id === this.cutId
       },
       getIndex () {
-        return this.navigation.siblings.findIndex(item => {
-          return this.isCurrent(item.id)
-        })
+        return this.navigation.siblings.findIndex(item => this.isCurrent(item.id))
       },
-      getScrollHorizontal () {
+      getX () {
         const index = this.getIndex()
         const itemWidth = this.sagakWidth + this.sagakMargin
 
-        this.scrollHorizontal = (window.innerWidth - itemWidth) / 2 - (index * itemWidth)
+        this.translate.x = (window.innerWidth - itemWidth) / 2 - (index * itemWidth)
       },
       // TODO : 키보드 이동
       // TODO : 부모 자식 이동
