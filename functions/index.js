@@ -31,20 +31,6 @@ exports.getComicById = functions.https.onRequest((req, res) => {
   })
 })
 
-exports.getComicByCutId = functions.https.onRequest((req, res) => {
-  cors(req, res, () => {
-    const split = req.url.split('/')
-    const cutId = split[split.length - 1]
-    const cutRef = db.collection('cuts').doc(cutId)
-
-    cutRef.get()
-      .then(snapshot => {
-        console.log(snapshot.data())
-      })
-      .catch(err => { console.warn(err) })
-  })
-})
-
 exports.getComics = functions.https.onRequest((req, res) => {
   cors(req, res, () => {
     db.collection('comics').get()
@@ -66,42 +52,6 @@ exports.addComic = functions.https.onRequest((req, res) => {
     db.collection('comics').add(req.body)
       .then(result => {
         res.json({ id: result.id })
-      })
-      .catch(err => { res.status(500).json(err) })
-  })
-})
-
-exports.getCutsByComicId = functions.https.onRequest((req, res) => {
-  cors(req, res, () => {
-    const split = req.url.split('/')
-    const comicId = split[split.length - 1]
-    const ref = db.collection('comics').doc(comicId).collection('cuts')
-
-    ref.get()
-      .then(snapshot => {
-        const cuts = []
-        snapshot.forEach(item => {
-          const cut = item.data()
-          cut.id = item.id
-          cuts.push(cut)
-        })
-        res.json(cuts)
-      })
-      .catch(err => { res.status(500).json(err) })
-  })
-})
-
-exports.getCutById = functions.https.onRequest((req, res) => {
-  cors(req, res, () => {
-    const split = req.url.split('/')
-    const comicId = split[1]
-    const cutId = split[2]
-    const ref = db.collection('comics').doc(comicId).collection('cuts').doc(cutId)
-
-    ref.get()
-      .then(snapshot => {
-        const cut = snapshot.exists ? snapshot.data() : null
-        res.json(cut)
       })
       .catch(err => { res.status(500).json(err) })
   })
