@@ -1,5 +1,5 @@
 <template>
-  <div class="add-comic">
+  <Page name="add-comic">
     <Card :title="id ? '코믹 수정' : '새 코믹'">
       <FileUploader
               :exists="imageUrl"
@@ -11,22 +11,23 @@
         <input class="input" v-model="email" type="email" placeholder="이메일" required/>
         <input class="input" v-model="password" type="password" placeholder="비밀번호" required/>
         <div class="button-flex">
-          <button class="button button-primary" type="submit"><i class="icon material-icons">check</i>새 코믹 만들기</button>
+          <button class="button button-brand" type="submit"><i class="icon material-icons">check</i>새 코믹 만들기</button>
           <button class="button" type="button" @click="$router.go(-1)"><i class="icon material-icons">close</i> 취소</button>
         </div>
       </form>
     </Card>
-  </div>
+  </Page>
 </template>
 
 <script>
   import Card from '@/components/partials/Card'
+  import Page from '@/components/partials/Page'
   import FileUploader from '@/components/partials/FileUploader'
   import { mapActions } from 'vuex'
 
   export default {
     name: 'add-comic',
-    components: { Card, FileUploader },
+    components: { Card, FileUploader, Page },
     props: [ 'id' ],
     data () {
       return {
@@ -67,9 +68,4 @@
 
 <style lang="scss">
   @import 'init';
-
-  .add-comic {
-    margin: 0 auto;
-    max-width: $site-width-narrow;
-  }
 </style>

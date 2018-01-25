@@ -46,6 +46,7 @@ textarea.input {
   font-weight: bold;
   cursor: pointer;
   text-align: center;
+  white-space: nowrap;
 }
 .button-small {
   padding: 6px 10px;
@@ -57,7 +58,7 @@ textarea.input {
   font-size: $font-size-smaller;
   font-weight: normal;
 }
-.button-primary {
+.button-brand {
   border-color: darken($color-brand, 10);
   background-color: $color-brand;
 }
@@ -68,6 +69,11 @@ textarea.input {
 .button-danger {
   border-color: darken($color-danger, 10);
   background-color: $color-danger;
+}
+.button-invert {
+  border-color: darken($color-background-darker, 10);
+  background-color: $color-background-darker;
+  color: $color-text;
 }
 
 .select {

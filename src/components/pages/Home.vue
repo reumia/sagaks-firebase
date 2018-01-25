@@ -1,19 +1,20 @@
 <template>
-  <div class="page-home">
+  <Page name="home">
     <Card>
       <Index :items="$store.state.comicsLatest"></Index>
     </Card>
-  </div>
+  </Page>
 </template>
 
 <script>
   import Carousel from '@/components/partials/Carousel'
   import Index from '@/components/partials/Index'
   import Card from '@/components/partials/Card'
+  import Page from '@/components/partials/Page'
 
   export default {
     name: 'home',
-    components: { Carousel, Card, Index },
+    components: { Carousel, Card, Index, Page },
     created () {
       this.$store.dispatch('GET_COMICS')
         .catch((err) => {

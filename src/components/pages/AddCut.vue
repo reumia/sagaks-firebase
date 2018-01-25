@@ -31,7 +31,7 @@
         <input class="input" v-model="email" type="email" placeholder="이메일" required/>
         <input class="input" v-model="password" type="password" placeholder="비밀번호" required/>
         <div class="button-flex">
-          <button class="button button-primary" type="submit"><i class="icon material-icons">check</i> {{ isInitial ? '첫 컷 만들기' : '다음 컷 만들기' }}</button>
+          <button class="button button-brand" type="submit"><i class="icon material-icons">check</i> {{ isInitial ? '첫 컷 만들기' : '다음 컷 만들기' }}</button>
           <button class="button" type="button" @click="handleCancel"><i class="icon material-icons">close</i> 취소</button>
         </div>
       </form>
