@@ -6,6 +6,8 @@ admin.initializeApp(functions.config().firebase)
 
 const db = admin.firestore()
 
+// TODO : Storage 업로드시, 썸네일 생성
+
 exports.getComicById = functions.https.onRequest((req, res) => {
   cors(req, res, () => {
     const split = req.url.split('/')

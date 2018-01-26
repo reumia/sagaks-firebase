@@ -1,12 +1,12 @@
 <template>
-  <router-link
-    :to="{ name: 'Cut', params: { comicId: comicId, cutId: data.id } }"
+  <div
+    @click="$emit('onClick')"
     class="sagak"
     :class="{ active: isCurrent }"
     :style="{ width: `${width}px`, margin: `0 ${margin/2}px` }"
   >
     <div class="sagak-body" :style="{ backgroundImage: `url(${data.imageUrl})` }"></div>
-  </router-link>
+  </div>
 </template>
 
 <script>
@@ -42,7 +42,6 @@
         display: none;
       }
       .sagak-body {
-        box-shadow: 0 2px 8px rgba(0,0,0,.1);
       }
     }
   }

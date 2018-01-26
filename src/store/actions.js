@@ -31,18 +31,36 @@ const actions = {
     return response.data
   },
   async GET_CUTS_NAVIGATION_BY_ID ({ commit, state, dispatch }, { comicId, cutId }) {
+    // TODO : 리팩토링!!
     const isStateEmpty = state.cuts.length <= 0
     const getResult = (cuts) => {
       const isEmpty = cuts.length <= 0
       const current = _.find(cuts, o => o.id === cutId)
-      const child = _.find(cuts, o => o.parentId === cutId)
-      const parent = _.find(cuts, o => o.id === current.parentId)
-      const siblings = _.filter(cuts, o => o.parentId === parent.id)
+      const hasParent = Boolean(current.parentId)
+
+      let parent = null
+      let siblings = [current]
+      // TODO : 0번쨰 child 말고 우선순위 책정
+      let child = _.find(cuts, o => o.parentId === cutId)
+
+      if (hasParent) {
+        parent = hasParent ? _.find(cuts, o => o.id === current.parentId) : null
+        const wholeSiblings = _.filter(cuts, o => o.parentId === parent.id)
+
+        if (wholeSiblings.length > 1) {
+          const currentIndex = wholeSiblings.indexOf(current)
+          let prev = wholeSiblings[currentIndex - 1]
+          let next = wholeSiblings[currentIndex + 1]
+
+          if (prev) siblings.unshift(prev)
+          if (next) siblings.push(next)
+        }
+      }
 
       return {
-        siblings: isEmpty ? [] : siblings,
-        parent: isEmpty ? {} : parent,
-        child: isEmpty ? {} : child
+        siblings: siblings,
+        parent: isEmpty ? null : parent,
+        child: isEmpty ? null : child
       }
     }
 
