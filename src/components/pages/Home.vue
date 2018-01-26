@@ -1,9 +1,7 @@
 <template>
   <div>
-    <Page class="home">
-
-    </Page>
-    <Page class="page-home page-grey">
+    <Carousel></Carousel>
+    <Page class="page-grey">
       <Card title="최근 코믹">
         <Index :items="$store.state.comicsLatest"></Index>
       </Card>

@@ -54,7 +54,7 @@
   .introduction-descriptions {
     margin-top: $space-unit;
     color: $color-text-lighter;
-    white-space: pre-wrap;
+    white-space: pre-line;
     word-break: break-all;
   }
   .introduction-functions {
