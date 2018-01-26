@@ -16,12 +16,6 @@
       </Introduction>
     </Page>
     <Tree v-if="hasCuts"></Tree>
-    <OwnerButtons>
-      <router-link :to="{ name: 'AddCut', params: { comicId: this.id } }" class="button button-small button-success">
-        <i class="icon material-icons">add</i>
-        {{ hasCuts ? '새 컷' : '첫 컷' }}
-      </router-link>
-    </OwnerButtons>
   </div>
 </template>
 
@@ -29,7 +23,6 @@
   import Page from '@/components/partials/Page'
   import Card from '@/components/partials/Card'
   import Functions from '@/components/partials/Functions'
-  import OwnerButtons from '@/components/partials/OwnerButtons'
   import Introduction from '@/components/partials/Introduction'
   import Tree from '@/components/partials/Tree'
   import Sticker from '@/components/partials/Sticker'
@@ -40,7 +33,7 @@
     name: 'comic',
     props: [ 'id' ],
     filters: filters,
-    components: { Page, Card, Functions, OwnerButtons, Introduction, Tree, Sticker },
+    components: { Page, Card, Functions, Introduction, Tree, Sticker },
     data () {
       return {
         createAt: null,

@@ -7,6 +7,9 @@
         </router-link>
       </div>
       <div class="header-menu">
+        <button v-if="hasComicId" class="button button-small button-success" @click="$router.push({ name: 'AddCut', params: { comicId: comicId } })">
+          <i class="material-icons icon">add</i> {{ hasCuts ? '새 컷' : '첫 컷' }}
+        </button>
         <button class="button button-small button-brand" @click="$router.push({ name: 'AddComic' })">
           <i class="material-icons icon">add</i> 새 코믹
         </button>
@@ -19,7 +22,7 @@
 </template>
 
 <script>
-  import { mapMutations } from 'vuex'
+  import { mapMutations, mapState } from 'vuex'
 
   export default {
     name: 'app-header',
@@ -27,6 +30,15 @@
     data () {
       return {
         msg: 'Welcome to Your Vue.js App'
+      }
+    },
+    computed: {
+      ...mapState([ 'comicId', 'cuts' ]),
+      hasComicId () {
+        return Boolean(this.comicId)
+      },
+      hasCuts () {
+        return this.cuts.length > 0
       }
     }
   }
