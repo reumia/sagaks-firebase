@@ -1,6 +1,6 @@
 <template>
   <Page class="page-add-cut">
-    <Card title="새 컷">
+    <Card title="새 컷" class="card-narrow">
       <!-- 부모 컷 선택하기 -->
       <div class="select">
         <i class="select-icon icon material-icons" :disabled="isInitial">keyboard_arrow_down</i>

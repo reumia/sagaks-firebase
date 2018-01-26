@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <Page v-if="id">
+  <div class="comic">
+    <Page v-if="id" class="page-comic" :class="{ 'active': isTreeWorking }">
       <Introduction
         :imageUrl="imageUrl"
         :title="title"
@@ -34,6 +34,7 @@
   import Tree from '@/components/partials/Tree'
   import Sticker from '@/components/partials/Sticker'
   import filters from '@/utils/filters'
+  import { mapState } from 'vuex'
 
   export default {
     name: 'comic',
@@ -65,6 +66,7 @@
         .catch(err => err)
     },
     computed: {
+      ...mapState([ 'isTreeWorking' ]),
       hasCuts () {
         return this.cuts.length > 0
       }
@@ -75,6 +77,14 @@
 <style lang="scss">
   @import 'init';
 
+  .comic {
+    background-image: linear-gradient(#fff, transparent);
+  }
+
   .page-comic {
+    transition: filter 0.3s ease;
+    &.active {
+      filter: blur(3px) grayscale(100%);
+    }
   }
 </style>

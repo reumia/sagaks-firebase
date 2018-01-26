@@ -1,6 +1,6 @@
 <template>
-  <Card class="card-narrow">
-    <div class="introduction" @click="handleClick" :class="{ 'active': isTreeWorking }">
+  <Card>
+    <div class="introduction" @click="handleClick">
       <div class="introduction-body">
         <div class="introduction-title">{{ title }}</div>
         <div class="introduction-descriptions">{{ descriptions }}</div>
@@ -13,16 +13,12 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex'
   import Card from '@/components/partials/Card'
 
   export default {
     name: 'introduction',
     components: { Card },
     props: [ 'imageUrl', 'title', 'status', 'descriptions', 'imageUrl' ],
-    computed: {
-      ...mapState([ 'isTreeWorking' ])
-    },
     mounted () {
       console.log(this.$el.offsetTop, this.$el.offsetHeight)
     },
@@ -40,10 +36,6 @@
 
   .introduction {
     box-sizing: border-box;
-    transition: filter 0.3s ease;
-    &.active {
-      filter: blur(3px) opacity(50%) grayscale(100%);
-    }
   }
   .introduction-body {
   }

@@ -15,10 +15,9 @@
 
   .owner-buttons {
     position: fixed;
-    bottom: $space-unit * 2;
-    left: 0;
-    right: 0;
     display: flex;
+    right: 0;
+    margin: $space-unit;
     justify-content: center;
     box-sizing: border-box;
     text-align: center;
