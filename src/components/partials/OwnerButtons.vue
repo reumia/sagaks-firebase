@@ -21,6 +21,9 @@
     justify-content: center;
     box-sizing: border-box;
     text-align: center;
+    @media screen and (min-width: 640px) {
+      margin: $space-unit ($space-unit * 2);
+    }
     .button {
       width: auto;
     }

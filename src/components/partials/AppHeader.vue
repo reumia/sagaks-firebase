@@ -66,6 +66,7 @@
     width: auto;
     color: $color-brand;
     line-height: $header-height;
+    font-weight: bold;
     text-align: left;
     vertical-align: bottom;
     white-space: nowrap;

@@ -24,7 +24,6 @@
     },
     methods: {
       handleClick () {
-        console.log('aaa')
         this.isActive = this.isActive === false
       }
     }
