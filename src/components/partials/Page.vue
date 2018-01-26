@@ -25,4 +25,9 @@
     background-color: $color-background-dark;
   }
 
+  .page-brand {
+    background-color: $color-brand;
+    color: $color-background;
+  }
+
 </style>

@@ -57,7 +57,7 @@
     max-width: $site-width;
     height: $space-unit * 20;
     margin: 0 auto;
-    padding-bottom: $space-unit * 2;
+    padding-bottom: $space-unit * 4;
     text-align: center;
     color: $color-text-light;
     > .title {
