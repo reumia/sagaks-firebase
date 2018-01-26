@@ -1,17 +1,19 @@
 <template>
   <header class="app__header">
-    <div class="header-logo">
-      <router-link :to="{name: 'Home'}" class="header-logo-link">
-        <i class="material-icons icon">widgets</i> 사각사각
-      </router-link>
-    </div>
-    <div class="header-menu">
-      <button class="button button-small button-brand" @click="$router.push({ name: 'AddComic' })">
-        <i class="material-icons icon">add</i> 새 코믹 만들기
-      </button>
-      <button class="button button-small button-invert" type="button" @click="TOGGLE_GLOBAL_NAVIGATION">
-        <i class="material-icons icon">menu</i>
-      </button>
+    <div class="header">
+      <div class="header-logo">
+        <router-link :to="{name: 'Home'}" class="header-logo-link">
+          <i class="material-icons icon">widgets</i> 사각사각
+        </router-link>
+      </div>
+      <div class="header-menu">
+        <button class="button button-small button-brand" @click="$router.push({ name: 'AddComic' })">
+          <i class="material-icons icon">add</i> 새 코믹
+        </button>
+        <button class="button button-small button-invert" type="button" @click="TOGGLE_GLOBAL_NAVIGATION">
+          <i class="material-icons icon">menu</i>
+        </button>
+      </div>
     </div>
   </header>
 </template>
@@ -34,13 +36,17 @@
   @import 'init';
 
   .app__header {
+    background-color: $color-background;
+  }
+
+  .header {
     position: relative;
+    z-index: 100;
     display: flex;
     justify-content: space-between;
     max-width: $site-width;
     padding: 0 $space-unit;
     margin: 0 auto;
-    background-color: $color-background;
     @media screen and (min-width: 640px) {
       padding: 0 ($space-unit * 2);
     }

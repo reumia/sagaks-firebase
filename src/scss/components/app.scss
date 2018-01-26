@@ -1,5 +1,6 @@
 html {
   overflow-x: hidden;
+  background-color: $color-background-dark;
 }
 
 .app {
@@ -7,9 +8,6 @@ html {
   font-size: $font-size;
   line-height: $line-height;
   color: $color-text;
-  .app__header {
-    z-index: 100;
-  }
   .nav {
     z-index: 300;
   }

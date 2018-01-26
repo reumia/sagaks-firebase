@@ -15,6 +15,7 @@
 
   .page {
     padding: ($space-unit * 2) $space-unit;
+    background-color: $color-background;
     @media screen and (min-width: 640px) {
       padding: ($space-unit * 3) ($space-unit * 2);
     }

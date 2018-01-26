@@ -15,16 +15,15 @@
 
   .owner-buttons {
     position: fixed;
-    bottom: $space-unit;
-    right: $space-unit;
+    bottom: $space-unit * 2;
+    left: 0;
+    right: 0;
     display: flex;
+    justify-content: center;
     box-sizing: border-box;
-    margin: 0;
-    max-width: $space-unit * 24;
     text-align: center;
     .button {
-      border-width: 0;
-      border-radius: $space-unit;
+      width: auto;
     }
   }
 </style>

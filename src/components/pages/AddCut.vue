@@ -1,5 +1,5 @@
 <template>
-  <div class="add-cut">
+  <Page class="page-add-cut">
     <Card title="새 컷">
       <!-- 부모 컷 선택하기 -->
       <div class="select">
@@ -36,17 +36,18 @@
         </div>
       </form>
     </Card>
-  </div>
+  </Page>
 </template>
 
 <script>
+  import Page from '@/components/partials/Page'
   import Card from '@/components/partials/Card'
   import FileUploader from '@/components/partials/FileUploader'
   import { mapActions, mapState } from 'vuex'
 
   export default {
     name: 'add-cut',
-    components: { Card, FileUploader },
+    components: { Page, Card, FileUploader },
     props: [ 'parentId', 'comicId' ],
     data () {
       return {
@@ -126,11 +127,6 @@
 
 <style lang="scss">
   @import 'init';
-
-  .add-cut {
-    margin: 0 auto;
-    max-width: $site-width-narrow;
-  }
 
   .parent-cut {
     display: flex;

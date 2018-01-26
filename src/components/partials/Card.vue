@@ -21,6 +21,10 @@
     margin: 0 auto;
   }
 
+  .card-narrow {
+    max-width: $site-width-narrow;
+  }
+
   .card ~ .card {
     margin-top: $space-unit * 2;
   }

@@ -1,21 +1,24 @@
 <template>
-  <div class="introduction" @click="handleClick" :class="{ 'active': isTreeWorking }">
-    <div class="introduction-image" v-if="imageUrl" :style="{ backgroundImage: `url(${imageUrl})`}"></div>
-    <div class="introduction-body">
-      <div class="introduction-title">{{ title }}</div>
-      <div class="introduction-descriptions">{{ descriptions }}</div>
-      <div class="introduction-functions">
-        <slot></slot>
+  <Card class="card-narrow">
+    <div class="introduction" @click="handleClick" :class="{ 'active': isTreeWorking }">
+      <div class="introduction-body">
+        <div class="introduction-title">{{ title }}</div>
+        <div class="introduction-descriptions">{{ descriptions }}</div>
+        <div class="introduction-functions">
+          <slot></slot>
+        </div>
       </div>
     </div>
-  </div>
+  </Card>
 </template>
 
 <script>
   import { mapState } from 'vuex'
+  import Card from '@/components/partials/Card'
 
   export default {
     name: 'introduction',
+    components: { Card },
     props: [ 'imageUrl', 'title', 'status', 'descriptions', 'imageUrl' ],
     computed: {
       ...mapState([ 'isTreeWorking' ])
@@ -37,57 +40,24 @@
 
   .introduction {
     box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
     transition: filter 0.3s ease;
     &.active {
       filter: blur(3px) opacity(50%) grayscale(100%);
     }
-    @media screen and (min-width: 640px) {
-      flex-direction: row;
-      justify-content: center;
-    }
-  }
-  .introduction-image {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    height: 25vw;
-    background-position: center center;
-    background-size: cover;
-    &:after {
-      content: '';
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background-image: linear-gradient(transparentize($color-background-dark, .1), $color-background-dark);
-    }
-    @media screen and (min-width: 640px) {
-    }
   }
   .introduction-body {
-    position: relative;
-    padding: $space-unit;
-    text-align: center;
-    @media screen and (min-width: 640px) {
-      padding: ($space-unit / 2) $space-unit;
-      width: 50%;
-    }
   }
   .introduction-title {
+    font-size: $font-size-large;
     color: $color-text-light;
   }
   .introduction-descriptions {
-    margin-top: ($space-unit / 4);
+    margin-top: $space-unit;
     color: $color-text-lighter;
-    font-size: $font-size-small;
+    white-space: pre-wrap;
     word-break: break-all;
   }
   .introduction-functions {
-    margin-top: $space-unit;
+    margin-top: $space-unit * 1.5;
   }
 </style>

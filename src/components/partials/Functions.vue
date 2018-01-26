@@ -16,7 +16,7 @@
   .function-wrap {
     overflow: hidden;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
   }
 
@@ -25,7 +25,7 @@
     box-sizing: border-box;
     width: auto;
     color: $color-text-light;
-    font-size: $font-size-smallest;
+    font-size: $font-size-smaller;
     cursor: default;
     text-align: center;
     white-space: normal;

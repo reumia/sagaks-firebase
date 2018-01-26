@@ -1,18 +1,20 @@
 <template>
-  <div class="page-comic" v-if="id">
-    <Introduction
-            :imageUrl="imageUrl"
-            :title="title"
-            :descriptions="descriptions"
-            :status="status"
-    >
-      <Functions>
-        <span class="function"><Sticker :code="status"></Sticker></span>
-        <span class="function"><i class="icon material-icons">access_time</i> {{ createAt | formatDate }}</span>
-        <span class="function"><i class="icon material-icons">person</i> {{ email }}</span>
-        <span class="function"><i class="icon material-icons">crop_din</i> {{ cuts.length | formatCurrency }}</span>
-      </Functions>
-    </Introduction>
+  <div>
+    <Page v-if="id">
+      <Introduction
+        :imageUrl="imageUrl"
+        :title="title"
+        :descriptions="descriptions"
+        :status="status"
+      >
+        <Functions>
+          <span class="function"><Sticker :code="status"></Sticker></span>
+          <span class="function"><i class="icon material-icons">access_time</i> {{ createAt | formatDate }}</span>
+          <span class="function"><i class="icon material-icons">person</i> {{ email }}</span>
+          <span class="function"><i class="icon material-icons">crop_din</i> {{ cuts.length | formatCurrency }}</span>
+        </Functions>
+      </Introduction>
+    </Page>
     <Tree v-if="hasCuts"></Tree>
     <OwnerButtons>
       <router-link :to="{ name: 'AddCut', params: { comicId: this.id } }" class="button button-small button-success">
@@ -24,6 +26,7 @@
 </template>
 
 <script>
+  import Page from '@/components/partials/Page'
   import Card from '@/components/partials/Card'
   import Functions from '@/components/partials/Functions'
   import OwnerButtons from '@/components/partials/OwnerButtons'
@@ -36,7 +39,7 @@
     name: 'comic',
     props: [ 'id' ],
     filters: filters,
-    components: { Card, Functions, OwnerButtons, Introduction, Tree, Sticker },
+    components: { Page, Card, Functions, OwnerButtons, Introduction, Tree, Sticker },
     data () {
       return {
         createAt: null,

@@ -1,6 +1,6 @@
 <template>
   <Page class="page-add-comic">
-    <Card :title="id ? '코믹 수정' : '새 코믹'">
+    <Card :title="id ? '코믹 수정' : '새 코믹'" class="card-narrow">
       <FileUploader
         :ratio="1"
         :exists="imageUrl"

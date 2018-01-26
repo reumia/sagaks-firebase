@@ -40,7 +40,6 @@ export default {
   [class^=sticker] {
     display: inline-block;
     color: $color-background;
-    font-size: $font-size-smallest;
     font-weight: bold;
   }
 
