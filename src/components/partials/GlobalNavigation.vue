@@ -1,15 +1,5 @@
 <template>
   <div class="nav" :class="{active: $store.state.isGlobalNavigationVisible}" role="navigation">
-    <!-- 닫기 버튼 -->
-    <button class="nav-close" @click="HIDE_GLOBAL_NAVIGATION">
-      <i class="material-icons icon">close</i>
-    </button>
-    <!-- 유저 버튼 -->
-    <div class="nav-user">
-      <button class="button button-small button-success" @click="$router.push({ name: 'AddComic' })">
-        <i class="material-icons icon">add</i> 새 코믹 만들기
-      </button>
-    </div>
     <!-- 네비게이션 버튼 -->
     <nav class="nav-list">
       <router-link :to="{ name: 'Home' }" class="nav-list-item">About SAGAKSAGAK</router-link>
@@ -38,43 +28,13 @@
     position: fixed;
     top: 0;
     bottom: 0;
-    left: 0;
+    right: 0;
     width: $aside-width;
     background-color: $color-background;
-    transform: translateX(-$aside-width);
-    box-shadow: 2px 0 0 rgba(0,0,0,.07);
+    transform: translateX($aside-width + 2px);
+    box-shadow: -2px 0 0 rgba(0,0,0,.07);
     &.active {
       transform: translateX(0);
-    }
-  }
-
-  .nav-close {
-    @extend %form-init;
-    padding: 0 ($space-unit * 0.75);
-    height: $header-height;
-    text-align: left;
-  }
-
-  .nav-user {
-    overflow: hidden;
-    display: block;
-    padding: $space-unit * 2;
-    background-color: $color-text;
-    .title {
-      color: $color-background;
-    }
-    .info {
-      color: transparentize($color-background, .3);
-      font-size: $font-size-small;
-    }
-    .button-wrap {
-      margin-top: $space-unit;
-      .button {
-        text-align: left;
-      }
-      .button ~ .button {
-        margin-top: ($space-unit / 4);
-      }
     }
   }
 
@@ -92,9 +52,4 @@
       color: $color-brand;
     }
   }
-
-  .with-aside {
-    padding-right: $aside-width;
-  }
-
 </style>
