@@ -17,11 +17,16 @@
 
   .card {
     box-sizing: border-box;
-    margin: $space-unit 0;
+    max-width: $site-width;
+    margin: 0 auto;
+  }
+
+  .card ~ .card {
+    margin-top: $space-unit * 2;
   }
 
   .card-title {
-    margin-bottom: $space-unit;
+    margin-bottom: $space-unit / 2;
     color: $color-text-lighter;
     font-size: $font-size-small;
   }

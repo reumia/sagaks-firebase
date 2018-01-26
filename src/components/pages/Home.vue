@@ -1,9 +1,17 @@
 <template>
-  <Page name="home">
-    <Card>
-      <Index :items="$store.state.comicsLatest"></Index>
-    </Card>
-  </Page>
+  <div>
+    <Page class="home">
+
+    </Page>
+    <Page class="page-home page-grey">
+      <Card title="인기 코믹">
+        <Index :items="$store.state.comicsLatest"></Index>
+      </Card>
+      <Card title="최근 코믹">
+        <Index :items="$store.state.comicsLatest"></Index>
+      </Card>
+    </Page>
+  </div>
 </template>
 
 <script>

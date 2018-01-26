@@ -22,7 +22,7 @@
       </div>
       <!-- // 현재 부모 컷 -->
       <FileUploader
-              :ratio="1 / 1"
+              :ratio="1"
               :exists = "imageUrl"
               @onSuccess="addFile"
       ></FileUploader>

@@ -1,19 +1,12 @@
 <template>
-  <div class="page" :class="pageClass">
+  <div class="page">
     <slot></slot>
   </div>
 </template>
 
 <script>
   export default {
-    name: 'page',
-    props: ['name'],
-    computed: {
-      pageClass () {
-        console.log(this.name)
-        return this.name ? { [`page-${this.name}`]: true } : {}
-      }
-    }
+    name: 'page'
   }
 </script>
 
@@ -21,16 +14,14 @@
   @import 'init';
 
   .page {
-    max-width: $site-width;
-    margin: ($space-unit * 3) auto $space-unit;
-    padding: 0 $space-unit;
+    padding: ($space-unit * 2) $space-unit;
     @media screen and (min-width: 640px) {
-      margin-top: $space-unit * 4;
-      padding: 0 ($space-unit * 2);
+      padding: ($space-unit * 3) ($space-unit * 2);
     }
   }
 
-  .page-add-comic {
-    max-width: $site-width-narrow;
+  .page-grey {
+    background-color: $color-background-dark;
   }
+
 </style>

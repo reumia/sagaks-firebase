@@ -1,9 +1,10 @@
 <template>
-  <Page name="add-comic">
+  <Page class="page-add-comic">
     <Card :title="id ? '코믹 수정' : '새 코믹'">
       <FileUploader
-              :exists="imageUrl"
-              @onSuccess="addFile"
+        :ratio="1"
+        :exists="imageUrl"
+        @onSuccess="addFile"
       ></FileUploader>
       <form @submit.prevent="handleSubmit">
         <input class="input" v-model="title" type="text" placeholder="제목" required/>
@@ -12,7 +13,8 @@
         <input class="input" v-model="password" type="password" placeholder="비밀번호" required/>
         <div class="button-flex">
           <button class="button button-brand" type="submit"><i class="icon material-icons">check</i>새 코믹 만들기</button>
-          <button class="button" type="button" @click="$router.go(-1)"><i class="icon material-icons">close</i> 취소</button>
+          <button class="button" type="button" @click="$router.go(-1)"><i class="icon material-icons">close</i> 취소
+          </button>
         </div>
       </form>
     </Card>
