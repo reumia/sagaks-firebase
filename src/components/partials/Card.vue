@@ -30,7 +30,7 @@
   }
 
   .card-title {
-    margin-bottom: $space-unit / 2;
+    margin-bottom: $space-unit;
     color: $color-text-lighter;
     font-size: $font-size-small;
   }

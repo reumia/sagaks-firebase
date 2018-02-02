@@ -2,7 +2,7 @@
   <div class="nav" :class="{active: $store.state.isGlobalNavigationVisible}" role="navigation">
     <!-- 네비게이션 버튼 -->
     <nav class="nav-list">
-      <router-link :to="{ name: 'Home' }" class="nav-list-item">About SAGAKSAGAK</router-link>
+      <router-link :to="{ name: 'About' }" class="nav-list-item">사각사각 소개</router-link>
     </nav>
   </div>
 </template>

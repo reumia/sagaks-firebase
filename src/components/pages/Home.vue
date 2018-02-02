@@ -23,11 +23,6 @@
         .catch((err) => {
           console.warn(err.response.data)
         })
-    },
-    data () {
-      return {
-        title: '사각사각 소개'
-      }
     }
   }
 </script>

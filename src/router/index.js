@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import store from '../store'
 
 import Home from '@/components/pages/Home'
+import About from '@/components/pages/About'
 import Cut from '@/components/pages/Cut'
 import AddCut from '@/components/pages/AddCut'
 import Comic from '@/components/pages/Comic'
@@ -16,6 +17,11 @@ const router = new Router({
       path: '/',
       name: 'Home',
       component: Home
+    },
+    {
+      path: '/about',
+      name: 'About',
+      component: About
     },
     {
       path: '/comic/:comicId/cut/add',

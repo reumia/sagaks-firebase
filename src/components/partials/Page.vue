@@ -29,5 +29,4 @@
     background-color: $color-brand;
     color: $color-background;
   }
-
 </style>

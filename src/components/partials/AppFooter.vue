@@ -1,17 +1,20 @@
 <template>
-  <footer class="app__footer">
-    &copy; 사각사각
-  </footer>
+  <Page class="page-grey">
+    <Card>
+      <footer class="app__footer">
+        @ 사각사각 2018 Allright reserved by zzoman.
+      </footer>
+    </Card>
+  </Page>
 </template>
 
 <script>
+  import Page from '@/components/partials/Page'
+  import Card from '@/components/partials/Card'
+
   export default {
     name: 'app-footer',
-    data () {
-      return {
-        msg: 'Welcome to Your Vue.js App'
-      }
-    }
+    components: { Page, Card }
   }
 </script>
 
@@ -19,10 +22,7 @@
   @import 'init';
 
   .app__footer {
-    @include transition (padding);
-    margin-top: $space-unit * 4;
-    padding: $space-unit;
-    color: $color-disabled;
-    text-align: center;
+    color: $color-text-lighter;
+    font-size: $font-size-small;
   }
 </style>
